@@ -1,0 +1,58 @@
+<!--ID押したら出てくる-->
+{% extends "base.html" %}
+{% load mathfilters %}
+{% load staticfiles %}
+{% load bootstrap4 %}
+
+{% block title %}インターンの詳細{% endblock title %}
+
+{% block content %}
+<section id="call-to-action" class="wow fadeIn">
+        <div class="container text-center">
+            <br>
+            <br>
+                <h3>インターン詳細</h3>
+                <p>インターン情報をより詳しく確認できます。</p>
+                
+           
+        </div>
+    </section>
+<br>
+<br>
+<div class="container">
+<table class="table table-striped table-bordered">
+    <tbody>
+        <tr>
+            <th scope="row">企業名</th>
+            <td>{{ intern.name }}</td>
+        </tr>
+        
+        <tr>
+            <th scope="row">インターンページ</th>
+            <td>
+                <a href="{{ intern.url }}" target="_blank">詳細はこちら</a>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">プログラミング言語</th>
+            <td>{{ intern.language }}</td>
+        </tr>
+        <tr>
+            <th scope="row">仕事内容</th>
+            <td>{{ intern.work }}</td>
+        </tr>
+        <tr>
+            <th scope="row">報酬</th>
+            <td>時給{{ intern.salary }}円</td>
+        </tr>
+        <tr>
+            <th scope="row">推定Mitsucariスコア</th>
+            <td>{{ intern.score }}/100点</td>
+        </tr>
+        
+    </tbody>
+</table>
+</div>
+<a href="{% url 'qboard:search_form' %}?page={{ page }}">一覧へ戻る</a>
+{% endblock %}
+

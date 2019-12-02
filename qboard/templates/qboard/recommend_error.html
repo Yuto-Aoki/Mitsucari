@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% load staticfiles %}
+{% block title %}おすすめインターンの結果{% endblock title %}
+{% block content %}
+<section id="call-to-action" class="wow fadeIn">
+        <div class="container text-center">
+            <br>
+            <br><br><br>
+                <h3>オススメのインターンが見つかりませんでした...</h3>
+                <p>少なくとも一人はチェックしてください！インターン体験記やTwitterを見て気になる人を見つけましょう。</p>
+                <p></p>
+           
+        </div>
+    </section>
+<br>
+<br>
+<header class="section-header">
+        <br>
+        <br>
+        <p>もう一度フォームを書き直す場合は<a href="{% url 'qboard:recommend_form' %}">こちら</a>、ホームに戻る場合は<a href="{% url 'index' %}">こちら</a>にお願いします。</p>
+        <br>
+</header>
+
+<!-- <div class="offset-md-3 col-md-9">
+<a href="{% url 'qboard:recommend_form' %}" class="btn btn-secondary btn-sm">再検索</a>
+<a href="{% url 'index' %}" class="btn btn-secondary btn-sm">戻る</a>
+</div> -->
+{% endblock %}

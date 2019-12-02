@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% load staticfiles %}
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% block title %}インターン合否予測{% endblock title %}
+
+{% block content %}
+<section id="call-to-action" class="wow fadeIn">
+        <div class="container text-center">
+            <br>
+            <br>
+                <h3>Mitsucariスコア</h3>
+            <p>ここではあなたのMitsucariスコアを算出できます。</p>
+            <p>Mitsucariスコアあなたの実力を数値化したもので、最大100点です。
+            </p>
+           
+    </div>
+</section>
+<br>
+<br>
+<div class="container">
+<form action="{% url 'qboard:predict_result' %}">
+    <!-- {% csrf_token %} -->
+    {% bootstrap_form form layout='horizontal' %}
+    <!-- <div id="map_preview" style="margin:auto;width:600px;height:400px"></div> -->
+    <div class="form-group row">
+        <div class="offset-md-3 col-md-9">
+            <button type="submit" class="btn btn-primary">送信</button>
+        </div>
+    </div>
+</form>
+
+{% endblock content %}
+
+{% block extra_js %}
+<!-- <script src="{% static 'iekari/js/map_form.js' %}"></script> -->
+</div>
+{% endblock %}

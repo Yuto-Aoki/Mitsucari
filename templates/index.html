@@ -1,0 +1,352 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}あなたにぴったりなインターンを探そう{% endblock title %}
+{% block content %}
+
+    
+
+
+<section id="intro">
+    <div class="intro-container">
+        <div id="introCarousel" class="carousel  slide carousel-fade" data-ride="carousel">
+    
+            <ol class="carousel-indicators"></ol>
+    
+                <div class="carousel-inner" role="listbox">
+        
+                <div class="carousel-item active">
+                    <div class="carousel-background"><img src="{% static 'qboard/img/intro-carousel/1.jpg' %}" alt=""></div>
+                    <div class="carousel-container">
+                    <div class="carousel-content">
+                        <h2>インターン探しをもっと楽に</h2>
+                        <p>MitsucariはIT企業のインターン探しに特化したアプリです。数あるインターンの中から自分に合うインターンを見つけましょう。</p>
+                        <a href="#featured-services" class="btn-get-started scrollto">Get Started</a>
+                    </div>
+                    </div>
+                </div>
+        
+        
+                <div class="carousel-item">
+                    <div class="carousel-background"><img src="{% static 'qboard/img/intro-carousel/3.jpg' %}" alt=""></div>
+                    <div class="carousel-container">
+                    <div class="carousel-content">
+                        <h2>インターン体験記</h2>
+                        <p>インターンの参加者が書いた体験記をユーザーみんなが閲覧できます。自分が行ったインターンの体験記を書くと報酬がもらえます。</p>
+                        <a href="#featured-services" class="btn-get-started scrollto">Get Started</a>
+                    </div>
+                    </div>
+                </div>
+        
+                <div class="carousel-item">
+                    <div class="carousel-background"><img src="{% static 'qboard/img/intro-carousel/4.jpg' %}" alt=""></div>
+                    <div class="carousel-container">
+                    <div class="carousel-content">
+                        <h2>活躍している人を目標に</h2>
+                        <p>インターンに行って活躍している学生がたくさんいます。彼らの過去のインターン参加履歴からあなたにおすすめのインターンを提供します。</p>
+                        <a href="#featured-services" class="btn-get-started scrollto">Get Started</a>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                        <div class="carousel-background"><img src="{% static 'qboard/img/intro-carousel/2.jpg' %}" alt=""></div>
+                        <div class="carousel-container">
+                        <div class="carousel-content">
+                            <h2>あなたの実力を数値化</h2>
+                            <p>プログラミング歴などからあなたの実力を数値化します。各企業にも難易度を数値化してあるので、自分の実力にあったインターンを探せます。</p>
+                            <a href="#featured-services" class="btn-get-started scrollto">Get Started</a>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- <div class="carousel-item">
+                    <div class="carousel-background"><img src="{% static 'qboard/img/intro-carousel/5.jpg' %}" alt=""></div>
+                    <div class="carousel-container">
+                    <div class="carousel-content">
+                        <h2>Magnam aliquam quaerat</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <a href="#featured-services" class="btn-get-started scrollto">Get Started</a>
+                    </div>
+                    </div>
+                </div> -->
+        
+                </div>
+        
+                <a class="carousel-control-prev" href="#introCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon ion-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+                </a>
+        
+                <a class="carousel-control-next" href="#introCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon ion-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+                </a>
+    
+        </div>
+    </div>
+</section><!-- #intro -->
+
+    
+<main id="main">
+
+
+<!--==========================
+Featured Services Section
+============================-->
+<section id="featured-services">
+    <div class="container">
+        <div class="row">
+
+        <div class="col-lg-4 box">
+            <i class="ion-ios-bookmarks-outline"></i>
+            <h4 class="title"><a href="/qboard/search">募集中のインターンリスト</a></h4>
+            <p class="description">現在募集中の全てのインターンを閲覧できます。使用するプログラミング言語や実施日などから検索もできます。</p>
+        </div>
+
+        <div class="col-lg-4 box box-bg">
+            <i class="ion-ios-stopwatch-outline"></i>
+            <h4 class="title"><a href="/qboard/recommend">おすすめのインターン</a></h4>
+            <p class="description">あなたが興味ある学生エンジニア達のインターン参加経験からオススメのインターンを紹介します。</p>
+        </div>
+
+        <div class="col-lg-4 box">
+            <i class="ion-ios-heart-outline"></i>
+            <h4 class="title"><a href="/qboard/experience">インターン体験記、開発物</a></h4>
+            <p class="description">インターン体験記や開発物の共有する場を設けます。ほかの学生がどのようなものを作っているかを知り、フィードバックをしてあげましょう。</p>
+        </div>
+
+        </div>
+    </div>
+</section><!-- #featured-services -->
+
+<!--==========================
+About Us Section
+============================-->
+<section id="about">
+    <div class="container">
+
+        <header class="section-header">
+        <h3>About Us</h3>
+        <p>Mitsucariの名前は「見つける」＋「キャリア」から来ています。IT企業に就職するにあたってインターンの参加は必須条件になりつつあります。Mitsucariはあなたのインターン探しを違った角度から助けます。</p>
+        </header>
+
+        <div class="row about-cols">
+
+        <div class="col-md-4 wow fadeInUp">
+            <div class="about-col">
+            <div class="img">
+                <img src="img/about-mission.jpg" alt="" class="img-fluid">
+                <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
+            </div>
+            <h2 class="title">Our Mission</h2>
+            <p>
+                ユーザーがより簡単にIT企業のインターンを見つけて、参加できることを目指しています。また企業側もインターン体験記や開発物などを見て気に入った学生にオファーを出し、学生とのマッチングを目指します。
+            </p>
+            </div>
+        </div>
+
+        <div class="col-md-4 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="about-col">
+            <div class="img">
+                <img src="img/about-plan.jpg" alt="" class="img-fluid">
+                <div class="icon"><i class="ion-ios-list-outline"></i></div>
+            </div>
+            <h2 class="title">Our Plan</h2>
+            <p>
+                インターン体験記や開発物を公開できる場を設けます。このページはユーザー全員がアクセスできます。これにより、学生はフィードバックがもらえたり、企業は優秀な学生を見つけやすくなります。
+            </p>
+            </div>
+        </div>
+
+        <div class="col-md-4 wow fadeInUp" data-wow-delay="0.2s">
+            <div class="about-col">
+            <div class="img">
+                <img src="img/about-vision.jpg" alt="" class="img-fluid">
+                <div class="icon"><i class="ion-ios-eye-outline"></i></div>
+            </div>
+            <h2 class="title">Our Vision</h2>
+            <p>
+                学生、企業の双方により高度なリコメンドができることを目標としています。具体的には対象のインターンの難易度を数値化し、その条件を満たした学生を企業とマッチングさせることを目指しています。
+            </p>
+            </div>
+        </div>
+
+        </div>
+
+    </div>
+</section><!-- #about -->
+
+<section id="services">
+        <div class="container">
+  
+          <header class="section-header wow fadeInUp">
+            <h3>Services</h3>
+            <p>Mitsucariではあなたのインターン探しをサポートするためにいくつかのサービスを提供しています。</p>
+          </header>
+  
+          <div class="row">
+  
+            <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
+              <div class="icon"><i class="ion-ios-analytics-outline"></i></div>
+              <h4 class="title"><a href="/qboard/search">募集中のインターン一覧</a></h4>
+              <p class="description">現在募集中の全てのインターンを閲覧できます。使用するプログラミング言語や実施日などから検索もできます。</p>
+            </div>
+            <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
+              <div class="icon"><i class="ion-ios-bookmarks-outline"></i></div>
+              <h4 class="title"><a href="/qboard/recommend">おすすめのインターン</a></h4>
+              <p class="description">あなたが興味ある学生エンジニア達のインターン参加経験からオススメのインターンを紹介します。</p>
+            </div>
+            <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
+              <div class="icon"><i class="ion-ios-paper-outline"></i></div>
+              <h4 class="title"><a href="/qboard/experience">インターン体験記、開発物</a></h4>
+              <p class="description">インターン体験記や開発物の共有する場を設けます。ほかの学生がどのようなものを作っているかを知り、フィードバックをしてあげましょう。</p>
+            </div>
+            <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
+              <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
+              <h4 class="title"><a href="/qboard/superman_list">スーパー学生エンジニア一覧</a></h4>
+              <p class="description">ユーザーが「この人すごい！！目標にしたい！！」と思う学生エンジニアをピックアップしました。彼らのことをもっと知ってみませんか？</p>
+            </div>
+            <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
+              <div class="icon"><i class="ion-ios-barcode-outline"></i></div>
+              <h4 class="title"><a href="/qboard/superman_form">スーパー学生エンジニア投票</a></h4>
+              <p class="description">このフォームにあなたが思うスーパー学生エンジニアの情報を登録してください。10人以上の投票でその方がスーパー学生エンジニアに認定されます。</p>
+            </div>
+            <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
+              <div class="icon"><i class="ion-ios-people-outline"></i></div>
+              <h4 class="title"><a href="/qboard/predict">インターン合否予測</a></h4>
+              <p class="description">あなたの実力を数値化します。その数値をもとにあなたが受かる可能性が高いインターンを紹介します。</p>
+            </div>
+  
+        </div>
+  
+    </div>
+</section>
+
+<!--==========================
+      Call To Action Section
+    ============================-->
+<!-- <section id="call-to-action" class="wow fadeIn">
+    <div class="container text-center">
+        <h3>Call To Action</h3>
+        <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <a class="cta-btn" href="#">Call To Action</a>
+    </div>
+</section>#call-to-action -->
+
+<!--==========================
+Facts Section
+============================-->
+<section id="facts"  class="wow fadeIn">
+    <div class="container">
+
+        <header class="section-header">
+        <h3>Facts</h3>
+        <p>現在のMitsucariの顧客数、従業員数です。</p>
+        </header>
+
+        <div class="row counters">
+
+                <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">0</span>
+            <p>Clients</p>
+                </div>
+
+        <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">6</span>
+            <p>Projects</p>
+                </div>
+
+        <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">0</span>
+            <p>Hours Of Support</p>
+                </div>
+
+        <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">1</span>
+            <p>Hard Workers</p>
+                </div>
+
+            </div>
+
+        <div class="facts-img">
+        <img src="img/facts-img.png" alt="" class="img-fluid">
+        </div>
+
+    </div>
+</section><!-- #facts -->
+
+<!--==========================
+Contact Section
+============================-->
+<section id="contact" class="section-bg wow fadeInUp">
+    <div class="container">
+
+        <div class="section-header">
+        <h3>Contact Us</h3>
+        <p>分からないことやシステムのバグが起こった場合はこちらに連絡をください</p>
+        </div>
+
+        <div class="row contact-info">
+
+        <div class="col-md-4">
+            <div class="contact-address">
+            <i class="ion-ios-location-outline"></i>
+            <h3>Address</h3>
+            <address>恵比寿ガーデンプレイスタワー 27階<br>　テックプレナー道場</address>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="contact-phone">
+            <i class="ion-ios-telephone-outline"></i>
+            <h3>Phone Number</h3>
+            <p><a href="tel:+155895548855">080 4477 3539</a></p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="contact-email">
+            <i class="ion-ios-email-outline"></i>
+            <h3>Email</h3>
+            <p><a href="mailto:yuuto3039@gmail.com">yuuto3039@gmail.com</a></p>
+            </div>
+        </div>
+
+        </div>
+
+        <div class="form">
+        <div id="sendmessage">Your message has been sent. Thank you!</div>
+        <div id="errormessage"></div>
+        <form action="" method="get" role="form" class="contactForm">
+            <div class="form-row">
+            <div class="form-group col-md-6">
+                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                <div class="validation"></div>
+            </div>
+            <div class="form-group col-md-6">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                <div class="validation"></div>
+            </div>
+            </div>
+            <div class="form-group">
+            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+            <div class="validation"></div>
+            </div>
+            <div class="form-group">
+            <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+            <div class="validation"></div>
+            </div>
+            <div class="text-center"><button type="submit">Send Message</button></div>
+        </form>
+        </div>
+
+    </div>
+    </section><!-- #contact -->
+
+</main>
+
+
+
+
+    
+{% endblock content %}

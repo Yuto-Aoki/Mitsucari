@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}会員登録完了{% endblock title %}
+
+{% block content %}
+<section id="call-to-action" class="wow fadeIn">
+        <div class="container text-center">
+            <br>
+            <br>
+            <h3>Mitsucariへようこそ！！</h3>
+            <p>ぜひいろんなサービスを利用してください！！</p>
+           
+        </div>
+    </section>
+<br>
+<br>
+<div class='container'>
+{% if user.is_authenticated %}
+<script type="text/javascript">
+    window.location.href = '/';
+</script>
+{% else %}
+
+<p>会員登録に成功しました。<a href="/accounts/login">ログイン画面へ</a></p>
+{% endif %}
+</div>
+{% endblock content %}

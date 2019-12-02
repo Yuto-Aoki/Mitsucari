@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% load staticfiles %}
+{% block title %}会員登録{% endblock title %}
+
+{% block content %}
+<section id="call-to-action" class="wow fadeIn">
+        <div class="container text-center">
+            <br>
+            <br>
+            <h3>Mitsucari会員登録</h3>
+            <p>会員登録する際は必要項目を入力してください。</p>
+           
+        </div>
+    </section>
+<br>
+<br>
+<div class='container'>
+{% if user.is_authenticated %}
+<script type="text/javascript">
+    window.location.href = '/';
+</script>
+{% else %}
+
+<form method="post" action="{% url 'register' %}">
+    {% csrf_token %}
+    {% bootstrap_form form layout='horizontal' %}
+    <div class="form-group row">
+        <div class="offset-md-3 col-md-9">
+            <button type="submit" class="btn btn-primary">登録</button>
+        </div>
+    </div>
+</form>
+{% endif %}
+</div>
+{% endblock content %}

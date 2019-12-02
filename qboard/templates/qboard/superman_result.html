@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% load staticfiles %}
+{% block title %}スーパー学生エンジニア候補{% endblock title %}
+
+{% block content %}
+<section id="call-to-action" class="wow fadeIn">
+        <div class="container text-center">
+            <br><br>
+            <br>
+                <h3>フォームの送信が完了しました！！</h3>
+            <p>ご協力ありがとうございました。</p>
+            <p>スーパー学生エンジニアに認定された場合は<a href="/qboard/superman_list">こちら</a>から確認できます。</p>
+          <br><br> 
+    </div>
+</section>
+
+<div class="container">
+
+
+{% endblock content %}
+
+{% block extra_js %}
+<!-- <script src="{% static 'iekari/js/map_form.js' %}"></script> -->
+</div>
+{% endblock %}

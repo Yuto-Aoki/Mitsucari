@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% load staticfiles %}
+{% block title %}おすすめインターンの検索結果{% endblock title %}
+{% block content %}
+<section id="call-to-action" class="wow fadeIn">
+        <div class="container text-center">
+            <br>
+            <br>
+                <h3>みんなの体験記、開発物</h3>
+                <p>ここにはユーザーが記述したインターン体験記、作製した開発物をまとめてあります。</p>
+                <p>ほかの人がどのような活動をしているか見てみましょう！！</p>
+           
+        </div>
+    </section>
+<br>
+<br>
+
+<div class="container">
+    <ul class="nav nav-tabs nav-justified" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="item1-tab" data-toggle="tab" href="#item1" role="tab" aria-controls="item1" aria-selected="true">インターン体験記</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="item2-tab" data-toggle="tab" href="#item2" role="tab" aria-controls="item2" aria-selected="false">開発物</a>
+        </li>
+        
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane fade show active" id="item1" role="tabpanel" aria-labelledby="item1-tab">
+                <section id="portfolio"  class="section-bg" >
+                        <div class="container">
+                  
+                          <header class="section-header">
+                            <h3 class="section-title">Internship Experience</h3>
+                          </header>
+                  
+                          <div class="row">
+                            <div class="col-lg-12">
+                              <ul id="portfolio-flters">
+                                <li data-filter="*" class="filter-active">All</li>
+                                <li data-filter=".filter-App">App</li>
+                                <li data-filter=".filter-Server">Server</li>
+                                <li data-filter=".filter-Web">Web</li>
+                                <li data-filter=".filter-AI">AI</li>
+                              </ul>
+                            </div>
+                          </div>
+                          
+                          <div class="row portfolio-container">
+                            {% for superman in supermans %}
+                            {% if superman.url %}
+                            {% if superman.skill == 'Web' %}
+
+                            <div class="col-lg-4 col-md-6 portfolio-item filter-{{ superman.skill }} wow fadeInUp">
+                                <div class="portfolio-wrap">
+                                    <figure>
+                                    <img src="{% static 'qboard/img/portfolio/web1.jpg' %}" class="img-fluid" alt="">
+                                    <a href="{% static 'qboard/img/portfolio/web1.jpg' %}" data-lightbox="portfolio" data-title="App 1" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
+                                    <a href="{{ superman.url }}" target="_blank" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+                                    </figure>
+                    
+                                    <div class="portfolio-info">
+                                    <h4><a href="https://twitter.com/{{ superman.twitter_name }}" target="_blank">{{ superman.name }}</a></h4>
+                                    <p>{{ superman.skill }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            {% elif superman.skill == 'App' %}
+                            <div class="col-lg-4 col-md-6 portfolio-item filter-{{ superman.skill }} wow fadeInUp">
+                                <div class="portfolio-wrap">
+                                    <figure>
+                                    <img src="{% static 'qboard/img/portfolio/App1.jpg' %}" class="img-fluid" alt="">
+                                    <a href="{% static 'qboard/img/portfolio/App1.jpg' %}" data-lightbox="portfolio" data-title="App 1" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
+                                    <a href="{{ superman.url }}" target="_blank" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+                                    </figure>
+                    
+                                    <div class="portfolio-info">
+                                    <h4><a href="https://twitter.com/{{ superman.twitter_name }}" target="_blank">{{ superman.name }}</a></h4>
+                                    <p>{{ superman.skill }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            {% elif superman.skill == AI %}
+                            <div class="col-lg-4 col-md-6 portfolio-item filter-{{ superman.skill }} wow fadeInUp">
+                                <div class="portfolio-wrap">
+                                    <figure>
+                                    <img src="{% static 'qboard/img/portfolio/ai1.jpg' %}" class="img-fluid" alt="">
+                                    <a href="{% static 'qboard/img/portfolio/ai1.jpg' %}" data-lightbox="portfolio" data-title="App 1" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
+                                    <a href="{{ superman.url }}" target="_blank" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+                                    </figure>
+                    
+                                    <div class="portfolio-info">
+                                    <h4><a href="https://twitter.com/{{ superman.twitter_name }}" target="_blank">{{ superman.name }}</a></h4>
+                                    <p>{{ superman.skill }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            {% else %}
+                            <div class="col-lg-4 col-md-6 portfolio-item filter-{{ superman.skill }} wow fadeInUp">
+                                <div class="portfolio-wrap">
+                                    <figure>
+                                    <img src="{% static 'qboard/img/portfolio/web1.jpg' %}" class="img-fluid" alt="">
+                                    <a href="{% static 'qboard/img/portfolio/web1.jpg' %}" data-lightbox="portfolio" data-title="App 1" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
+                                    <a href="{{ superman.url }}" target="_blank" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+                                    </figure>
+                    
+                                    <div class="portfolio-info">
+                                    <h4><a href="https://twitter.com/{{ superman.twitter_name }}" target="_blank">{{ superman.name }}</a></h4>
+                                    <p>{{ superman.skill }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+
+                            {% endif %}
+                            {% endfor %}
+                            
+                  
+                          </div>
+                  
+                        </div>
+                      </section>
+        </div>
+        <div class="tab-pane fade" id="item2" role="tabpanel" aria-labelledby="item2-tab">
+            <section id="portfolio"  class="section-bg" >
+                <div class="container">
+          
+                  <header class="section-header">
+                    <h3 class="section-title">Development Products</h3>
+                  </header>
+          
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <ul id="portfolio-flters">
+                        <li data-filter="*" class="filter-active">All</li>
+                        <li data-filter=".filter-App">App</li>
+                        <li data-filter=".filter-Server">Server</li>
+                        <li data-filter=".filter-Web">Web</li>
+                        <li data-filter=".filter-AI">AI</li>
+                      </ul>
+                    </div>
+                  </div>
+                  
+                  <div class="row portfolio-container">
+                    {% for superman in supermans %}
+                    {% if superman.github %}
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-{{ superman.skill }} wow fadeInUp">
+                        <div class="portfolio-wrap">
+                            <figure>
+                            <img src="{% static 'qboard/img/portfolio/app1.jpg' %}" class="img-fluid" alt="">
+                            <a href="img/portfolio/app1.jpg" data-lightbox="portfolio" data-title="App 1" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
+                            <a href="{{ superman.github }}" target="_blank" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+                            </figure>
+            
+                            <div class="portfolio-info">
+                            <h4><a href="https://twitter.com/{{ superman.twitter_name }}" target="_blank">{{ superman.name }}</a></h4>
+                            <p>{{ superman.skill }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                  </div>
+                  
+                </div>
+              </section>
+        </div>
+        
+    </div>
+</div>
+{% endblock %}

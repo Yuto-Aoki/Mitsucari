@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% load staticfiles %}
+{% load mathfilters %}
+{% block title %}Mitsucariスコア{% endblock title %}
+{% block content %}
+<style>
+#score {
+  background: url("../img/facts-bg.jpg") center top no-repeat fixed;
+  background-size: cover;
+  padding: 60px 0 0 0;
+  position: relative;
+}
+
+#score::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.88);
+  z-index: 9;
+}
+
+#score .container {
+  position: relative;
+  z-index: 10;
+}
+
+
+#score .counters span {
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  font-size: 98px;
+  display: block;
+  color: #18d26e;
+  
+  height: 10rem;
+  text-align: center;
+}
+
+/* #score .text-center {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    width: 100px;
+    height: 100px;
+} */
+#score .counters p {
+  padding: 0;
+  margin: 0 0 20px 0;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  color: #111;
+}
+
+#score .facts-img {
+  text-align: center;
+  padding-top: 30px;
+}
+</style>
+<section id="call-to-action" class="wow fadeIn">
+        <div class="container text-center">
+            <br>
+            <br>
+                <h3>Mitsucariスコア</h3>
+                <p>あなたのMitsucariスコアは...??</p>
+                <p></p>
+           
+        </div>
+    </section>
+    <!-- <div class="container text-center">
+            <br>
+            <br>
+                <h3>100点中</h3>
+                <p></p>
+                <p></p>
+           
+        </div> -->
+<br>
+
+<section id="score"  class="wow fadeIn">
+        <div class="container">
+    
+            <!-- <header class="section-header">
+            <h3>Your Score</h3>
+            <p></p>
+            
+            </header> -->
+    <br><br>
+            <div class="row counters">
+                
+    
+                <div class="text-center">
+                <span data-toggle="counter-up">{{ score }}</span>
+                <p></p>
+                
+                    </div>
+    
+            </div>
+            
+            <div class="container text-center">
+                
+                {% if p_message %}
+                <p>{{ p_message }}</p>
+                {% endif %}
+                {% if d_message %}
+                <p>{{ d_message }}</p>
+                
+                {% endif %}
+                {% if g_message %}
+                {{ g_message }}
+                {% endif %}
+            </div>
+    
+            <div class="facts-img">
+            <img src="{% static 'qboard/img/facts-bg.png' %}" alt="" class="img-fluid">
+            </div>
+            
+        </div>
+    </section>
+
+<div class="container">
+    
+    <!-- <section id="facts"  class="wow fadeIn">
+    <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">{{ score }}</span>
+            <p>Projects</p>
+                </div>
+    </section> -->
+    <p>あなたのスコア、{{ score }}点で受かる可能性があるインターンは...
+    </p>
+    
+    
+      <table class="table table-striped table-bordered">
+              <thead>
+                  <tr>
+                      <th scope="col">オススメランキング</th>
+                      <th scope="col">インターン名</th>
+                      <th scope="col">確率</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for intern in interns %}
+                  {% if intern.score <= score %}
+                  <tr>
+                      <th scope="row">
+                          
+                          第{{ forloop.counter }}位
+                      </th>
+                      
+                      <td>
+                          {{ intern.name }}
+                          
+                      </td> 
+                      <td>
+                        {{ score|sub:intern.score|add:"50" }}%
+                      </td>
+                      
+                  </tr>
+                  {% endif %}
+                  {% endfor %}
+              </tbody>
+          </table>
+            <!-- <div class = "post_body">
+                    {{ superman.name|safe|truncatewords:"3"|linebreaks }}
+                    <a href="{{ url_for_full_content }}">read more</a>
+            </div> -->
+  
+</div>
+<div class="offset-md-3 col-md-9">
+<a href="{% url 'qboard:predict_form' %}" class="btn btn-success btn-sm">再入力</a>
+<a href="{% url 'index' %}" class="btn btn-success btn-sm">ホーム</a>
+</div>
+{% endblock %}
