@@ -22,7 +22,7 @@ class Profile(models.Model):
     gender = models.IntegerField('性別',choices=GENDER_LIST)
     univercity = models.CharField('大学名', max_length=20, default='大学')
     faculty = models.CharField('学部', max_length=20,default='学部')
-    department = models.CharField('学科', max_length=20,default='学科')
+    department = models.CharField('学科', max_length=40,default='学科')
     degree = models.IntegerField('学位', choices=DEGREE_LIST, default=0)
     grade = models.IntegerField('学年',default=3)
     #graduate_date = models.DateField('卒業(予定)年月',default=201903)
