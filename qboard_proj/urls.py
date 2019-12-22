@@ -27,7 +27,7 @@ from qboard.models import Profile
 from qboard.views.register import register_view, done_view #追加！
 
 def index(request):
-    profile = Profile.objects.get()
+    profile = Profile.objects.all()
 
     contexts = {'profile':profile}
     return render(request,'index.html',contexts)
