@@ -23,11 +23,13 @@ from django.shortcuts import render
 from django.urls import include, path
 from django.contrib import admin 
 from django.contrib.auth.decorators import login_required
-
+from qboard.models import Profile
 from qboard.views.register import register_view, done_view #追加！
 
 def index(request):
-    contexts = {}
+    profile = Profile.objects.get()
+
+    contexts = {'profile':profile}
     return render(request,'index.html',contexts)
 
 urlpatterns = [
