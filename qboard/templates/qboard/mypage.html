@@ -15,12 +15,14 @@
     </section>
 <br>
 <br>
-
+<div class="container">
     <h5>基本情報</h5>
     <p><b>{{ user.username }}</b> さん</p>
     <p>年齢: {{ user.profile.age }}歳</p>
     <p>性別: {{ user.profile.get_gender_display }}</p>
-    <p></p>
+    <p>{{ user.profile.univercity }} {{ user.faculty }}</p>
+    <p>{{ user.profile.department }}</p>
+    <p>{{ user.profile.grade }}年生</p>
     
 
     <hr>
@@ -110,4 +112,5 @@
             {% endfor %}
         </tbody>
     </table> -->
+</div>
 {% endblock %}
