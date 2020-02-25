@@ -18,8 +18,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'mitsukari_db', #DB名
         'USER': 'mitsukari',
-        'HOST': 'mitsucari-app',
-        'PASSWORD': 'localhost', 
+        'HOST': 'localhost',
+        'PASSWORD': 'mitsukari_pass', 
         'PORT': '5432'
     }
 }
