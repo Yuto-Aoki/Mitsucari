@@ -1,6 +1,8 @@
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+SECRET_KEY = '0m2_&-(19k4*(rqwn5yx-sn21t&j07q@#u8+=6#u0q6w4bori0'
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -17,7 +19,7 @@ DATABASES = {
         'NAME': 'mitsukari_db', #DB名
         'USER': 'mitsukari',
         'HOST': 'mitsucari-app',
-        'PASSWORD': 'mitsukari_pass', 
+        'PASSWORD': 'localhost', 
         'PORT': '5432'
     }
 }
