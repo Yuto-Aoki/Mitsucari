@@ -1,0 +1,1777 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 11.5
+-- Dumped by pg_dump version 11.5
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: auth_group; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.auth_group (
+    id integer NOT NULL,
+    name character varying(150) NOT NULL
+);
+
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.auth_group_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.auth_group_id_seq OWNED BY public.auth_group.id;
+
+
+--
+-- Name: auth_group_permissions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.auth_group_permissions (
+    id integer NOT NULL,
+    group_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.auth_group_permissions_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.auth_group_permissions_id_seq OWNED BY public.auth_group_permissions.id;
+
+
+--
+-- Name: auth_permission; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.auth_permission (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    content_type_id integer NOT NULL,
+    codename character varying(100) NOT NULL
+);
+
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.auth_permission_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.auth_permission_id_seq OWNED BY public.auth_permission.id;
+
+
+--
+-- Name: auth_user; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.auth_user (
+    id integer NOT NULL,
+    password character varying(128) NOT NULL,
+    last_login timestamp with time zone,
+    is_superuser boolean NOT NULL,
+    username character varying(150) NOT NULL,
+    first_name character varying(30) NOT NULL,
+    last_name character varying(150) NOT NULL,
+    email character varying(254) NOT NULL,
+    is_staff boolean NOT NULL,
+    is_active boolean NOT NULL,
+    date_joined timestamp with time zone NOT NULL
+);
+
+
+--
+-- Name: auth_user_groups; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.auth_user_groups (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    group_id integer NOT NULL
+);
+
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.auth_user_groups_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.auth_user_groups_id_seq OWNED BY public.auth_user_groups.id;
+
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.auth_user_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.auth_user_id_seq OWNED BY public.auth_user.id;
+
+
+--
+-- Name: auth_user_user_permissions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.auth_user_user_permissions (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.auth_user_user_permissions_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.auth_user_user_permissions_id_seq OWNED BY public.auth_user_user_permissions.id;
+
+
+--
+-- Name: django_admin_log; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.django_admin_log (
+    id integer NOT NULL,
+    action_time timestamp with time zone NOT NULL,
+    object_id text,
+    object_repr character varying(200) NOT NULL,
+    action_flag smallint NOT NULL,
+    change_message text NOT NULL,
+    content_type_id integer,
+    user_id integer NOT NULL,
+    CONSTRAINT django_admin_log_action_flag_check CHECK ((action_flag >= 0))
+);
+
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.django_admin_log_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.django_admin_log_id_seq OWNED BY public.django_admin_log.id;
+
+
+--
+-- Name: django_content_type; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.django_content_type (
+    id integer NOT NULL,
+    app_label character varying(100) NOT NULL,
+    model character varying(100) NOT NULL
+);
+
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.django_content_type_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.django_content_type_id_seq OWNED BY public.django_content_type.id;
+
+
+--
+-- Name: django_migrations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.django_migrations (
+    id integer NOT NULL,
+    app character varying(255) NOT NULL,
+    name character varying(255) NOT NULL,
+    applied timestamp with time zone NOT NULL
+);
+
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.django_migrations_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.django_migrations_id_seq OWNED BY public.django_migrations.id;
+
+
+--
+-- Name: django_session; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.django_session (
+    session_key character varying(40) NOT NULL,
+    session_data text NOT NULL,
+    expire_date timestamp with time zone NOT NULL
+);
+
+
+--
+-- Name: qboard_candidate; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.qboard_candidate (
+    id integer NOT NULL,
+    name character varying(20) NOT NULL,
+    twitter_name character varying(20),
+    twitter character varying(20) NOT NULL,
+    url character varying(200),
+    memo text NOT NULL,
+    github character varying(200),
+    skill_tag_id integer,
+    intern_name_id integer
+);
+
+
+--
+-- Name: qboard_candidate_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.qboard_candidate_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: qboard_candidate_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.qboard_candidate_id_seq OWNED BY public.qboard_candidate.id;
+
+
+--
+-- Name: qboard_intern; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.qboard_intern (
+    id integer NOT NULL,
+    name character varying(20) NOT NULL,
+    work text NOT NULL,
+    score integer NOT NULL,
+    salary integer NOT NULL,
+    url character varying(200) NOT NULL,
+    language_id integer NOT NULL
+);
+
+
+--
+-- Name: qboard_intern_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.qboard_intern_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: qboard_intern_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.qboard_intern_id_seq OWNED BY public.qboard_intern.id;
+
+
+--
+-- Name: qboard_internname; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.qboard_internname (
+    id integer NOT NULL,
+    name character varying(20) NOT NULL
+);
+
+
+--
+-- Name: qboard_internname_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.qboard_internname_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: qboard_internname_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.qboard_internname_id_seq OWNED BY public.qboard_internname.id;
+
+
+--
+-- Name: qboard_language; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.qboard_language (
+    id integer NOT NULL,
+    language character varying(20) NOT NULL
+);
+
+
+--
+-- Name: qboard_language_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.qboard_language_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: qboard_language_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.qboard_language_id_seq OWNED BY public.qboard_language.id;
+
+
+--
+-- Name: qboard_predict; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.qboard_predict (
+    id integer NOT NULL,
+    programming integer NOT NULL,
+    develop_num integer NOT NULL,
+    gpa integer NOT NULL,
+    atcoder integer NOT NULL,
+    score integer NOT NULL,
+    language_id integer NOT NULL
+);
+
+
+--
+-- Name: qboard_predict_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.qboard_predict_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: qboard_predict_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.qboard_predict_id_seq OWNED BY public.qboard_predict.id;
+
+
+--
+-- Name: qboard_profile; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.qboard_profile (
+    id character varying(6) NOT NULL,
+    age integer NOT NULL,
+    gender integer NOT NULL,
+    univercity character varying(20) NOT NULL,
+    faculty character varying(20) NOT NULL,
+    department character varying(40) NOT NULL,
+    user_id integer,
+    degree integer NOT NULL,
+    email_address character varying(255) NOT NULL,
+    grade integer NOT NULL,
+    highschool character varying(20) NOT NULL,
+    memo text,
+    twitter text NOT NULL
+);
+
+
+--
+-- Name: qboard_skill; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.qboard_skill (
+    id integer NOT NULL,
+    name character varying(20) NOT NULL
+);
+
+
+--
+-- Name: qboard_skill_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.qboard_skill_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: qboard_skill_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.qboard_skill_id_seq OWNED BY public.qboard_skill.id;
+
+
+--
+-- Name: qboard_superman; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.qboard_superman (
+    id character varying(6) NOT NULL,
+    name character varying(20) NOT NULL,
+    twitter character varying(20) NOT NULL,
+    url character varying(200),
+    twitter_name character varying(20),
+    github character varying(200),
+    skill_id integer
+);
+
+
+--
+-- Name: qboard_superman_intern_name; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.qboard_superman_intern_name (
+    id integer NOT NULL,
+    superman_id character varying(6) NOT NULL,
+    internname_id integer NOT NULL
+);
+
+
+--
+-- Name: qboard_superman_intern_name_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.qboard_superman_intern_name_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: qboard_superman_intern_name_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.qboard_superman_intern_name_id_seq OWNED BY public.qboard_superman_intern_name.id;
+
+
+--
+-- Name: auth_group id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_group ALTER COLUMN id SET DEFAULT nextval('public.auth_group_id_seq'::regclass);
+
+
+--
+-- Name: auth_group_permissions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_group_permissions ALTER COLUMN id SET DEFAULT nextval('public.auth_group_permissions_id_seq'::regclass);
+
+
+--
+-- Name: auth_permission id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_permission ALTER COLUMN id SET DEFAULT nextval('public.auth_permission_id_seq'::regclass);
+
+
+--
+-- Name: auth_user id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_user ALTER COLUMN id SET DEFAULT nextval('public.auth_user_id_seq'::regclass);
+
+
+--
+-- Name: auth_user_groups id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_user_groups ALTER COLUMN id SET DEFAULT nextval('public.auth_user_groups_id_seq'::regclass);
+
+
+--
+-- Name: auth_user_user_permissions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions ALTER COLUMN id SET DEFAULT nextval('public.auth_user_user_permissions_id_seq'::regclass);
+
+
+--
+-- Name: django_admin_log id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.django_admin_log ALTER COLUMN id SET DEFAULT nextval('public.django_admin_log_id_seq'::regclass);
+
+
+--
+-- Name: django_content_type id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.django_content_type ALTER COLUMN id SET DEFAULT nextval('public.django_content_type_id_seq'::regclass);
+
+
+--
+-- Name: django_migrations id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.django_migrations ALTER COLUMN id SET DEFAULT nextval('public.django_migrations_id_seq'::regclass);
+
+
+--
+-- Name: qboard_candidate id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.qboard_candidate ALTER COLUMN id SET DEFAULT nextval('public.qboard_candidate_id_seq'::regclass);
+
+
+--
+-- Name: qboard_intern id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.qboard_intern ALTER COLUMN id SET DEFAULT nextval('public.qboard_intern_id_seq'::regclass);
+
+
+--
+-- Name: qboard_internname id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.qboard_internname ALTER COLUMN id SET DEFAULT nextval('public.qboard_internname_id_seq'::regclass);
+
+
+--
+-- Name: qboard_language id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.qboard_language ALTER COLUMN id SET DEFAULT nextval('public.qboard_language_id_seq'::regclass);
+
+
+--
+-- Name: qboard_predict id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.qboard_predict ALTER COLUMN id SET DEFAULT nextval('public.qboard_predict_id_seq'::regclass);
+
+
+--
+-- Name: qboard_skill id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.qboard_skill ALTER COLUMN id SET DEFAULT nextval('public.qboard_skill_id_seq'::regclass);
+
+
+--
+-- Name: qboard_superman_intern_name id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.qboard_superman_intern_name ALTER COLUMN id SET DEFAULT nextval('public.qboard_superman_intern_name_id_seq'::regclass);
+
+
+--
+-- Data for Name: auth_group; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.auth_group (id, name) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_group_permissions; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.auth_group_permissions (id, group_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_permission; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
+1	Can add log entry	1	add_logentry
+2	Can change log entry	1	change_logentry
+3	Can delete log entry	1	delete_logentry
+4	Can view log entry	1	view_logentry
+5	Can add permission	2	add_permission
+6	Can change permission	2	change_permission
+7	Can delete permission	2	delete_permission
+8	Can view permission	2	view_permission
+9	Can add group	3	add_group
+10	Can change group	3	change_group
+11	Can delete group	3	delete_group
+12	Can view group	3	view_group
+13	Can add user	4	add_user
+14	Can change user	4	change_user
+15	Can delete user	4	delete_user
+16	Can view user	4	view_user
+17	Can add content type	5	add_contenttype
+18	Can change content type	5	change_contenttype
+19	Can delete content type	5	delete_contenttype
+20	Can view content type	5	view_contenttype
+21	Can add session	6	add_session
+22	Can change session	6	change_session
+23	Can delete session	6	delete_session
+24	Can view session	6	view_session
+25	Can add 險隱樊ュ蝣ｱ繝・・繧ｿ	7	add_language
+26	Can change 險隱樊ュ蝣ｱ繝・・繧ｿ	7	change_language
+27	Can delete 險隱樊ュ蝣ｱ繝・・繧ｿ	7	delete_language
+28	Can view 險隱樊ュ蝣ｱ繝・・繧ｿ	7	view_language
+29	Can add 繝ｦ繝ｼ繧ｶ繝ｼ諠・ｱ繝・・繧ｿ	8	add_profile
+30	Can change 繝ｦ繝ｼ繧ｶ繝ｼ諠・ｱ繝・・繧ｿ	8	change_profile
+31	Can delete 繝ｦ繝ｼ繧ｶ繝ｼ諠・ｱ繝・・繧ｿ	8	delete_profile
+32	Can view 繝ｦ繝ｼ繧ｶ繝ｼ諠・ｱ繝・・繧ｿ	8	view_profile
+33	Can add 縺吶＃縺・ｺｺ諠・ｱ繝・・繧ｿ	9	add_superman
+34	Can change 縺吶＃縺・ｺｺ諠・ｱ繝・・繧ｿ	9	change_superman
+35	Can delete 縺吶＃縺・ｺｺ諠・ｱ繝・・繧ｿ	9	delete_superman
+36	Can view 縺吶＃縺・ｺｺ諠・ｱ繝・・繧ｿ	9	view_superman
+37	Can add 繧､繝ｳ繧ｿ繝ｼ繝ｳ蜷榊燕諠・ｱ繝・・繧ｿ	10	add_internname
+38	Can change 繧､繝ｳ繧ｿ繝ｼ繝ｳ蜷榊燕諠・ｱ繝・・繧ｿ	10	change_internname
+39	Can delete 繧､繝ｳ繧ｿ繝ｼ繝ｳ蜷榊燕諠・ｱ繝・・繧ｿ	10	delete_internname
+40	Can view 繧､繝ｳ繧ｿ繝ｼ繝ｳ蜷榊燕諠・ｱ繝・・繧ｿ	10	view_internname
+41	Can add 繧ｹ繧ｭ繝ｫ繧ｿ繧ｰ諠・ｱ繝・・繧ｿ	11	add_skill
+42	Can change 繧ｹ繧ｭ繝ｫ繧ｿ繧ｰ諠・ｱ繝・・繧ｿ	11	change_skill
+43	Can delete 繧ｹ繧ｭ繝ｫ繧ｿ繧ｰ諠・ｱ繝・・繧ｿ	11	delete_skill
+44	Can view 繧ｹ繧ｭ繝ｫ繧ｿ繧ｰ諠・ｱ繝・・繧ｿ	11	view_skill
+45	Can add 縺吶＃縺・ｺｺ蛟呵｣懈ュ蝣ｱ繝・・繧ｿ	12	add_candidate
+46	Can change 縺吶＃縺・ｺｺ蛟呵｣懈ュ蝣ｱ繝・・繧ｿ	12	change_candidate
+47	Can delete 縺吶＃縺・ｺｺ蛟呵｣懈ュ蝣ｱ繝・・繧ｿ	12	delete_candidate
+48	Can view 縺吶＃縺・ｺｺ蛟呵｣懈ュ蝣ｱ繝・・繧ｿ	12	view_candidate
+49	Can add 莠域ｸｬ繝・・繧ｿ	13	add_predict
+50	Can change 莠域ｸｬ繝・・繧ｿ	13	change_predict
+51	Can delete 莠域ｸｬ繝・・繧ｿ	13	delete_predict
+52	Can view 莠域ｸｬ繝・・繧ｿ	13	view_predict
+53	Can add 繧､繝ｳ繧ｿ繝ｼ繝ｳ諠・ｱ繝・・繧ｿ	14	add_intern
+54	Can change 繧､繝ｳ繧ｿ繝ｼ繝ｳ諠・ｱ繝・・繧ｿ	14	change_intern
+55	Can delete 繧､繝ｳ繧ｿ繝ｼ繝ｳ諠・ｱ繝・・繧ｿ	14	delete_intern
+56	Can view 繧､繝ｳ繧ｿ繝ｼ繝ｳ諠・ｱ繝・・繧ｿ	14	view_intern
+\.
+
+
+--
+-- Data for Name: auth_user; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
+3	pbkdf2_sha256$150000$7XSyaU0E2izv$975ua6AJKhXLA4IMWNHlrgC1UD5rtBsMLcrOk5dI6M0=	\N	f	縺ゅ♀縺翫♀				f	t	2019-12-21 18:03:30.61914+09
+4	pbkdf2_sha256$150000$rTLUQiX5ufOW$PnyZ+20cc4vex3QOCt+7a0j3x9ChcyloCRYnhWuXiWs=	2019-12-22 23:39:18.135266+09	f	縺ゅ♀縺阪〒縺・			f	t	2019-12-21 18:06:40.445632+09
+1	pbkdf2_sha256$150000$XypvNUDg7zkM$2B3osL7KlaTueDTn2pBsmLNq57zvxXFQhxpjVEYr6Wg=	2019-12-23 00:00:28.576118+09	t	mitsukari_admin			yuuto3039@gmail.com	t	t	2019-09-06 21:59:40.433107+09
+5	pbkdf2_sha256$150000$a9EHYaAkiUns$7a5EHcmmcpXHZNcjmy+EbjA27j4Kp0Kf5Mpcanh4tJ8=	\N	f	test_user				f	t	2019-12-23 00:01:45.978617+09
+6	pbkdf2_sha256$150000$oVSjlVSvrmwp$pmHPQkxuWbyDBPyF1VSTBwEwRhQhlL7RDZ34uRLSGFE=	2019-12-23 00:05:44.858299+09	f	test_user_a				f	t	2019-12-23 00:05:20.896177+09
+\.
+
+
+--
+-- Data for Name: auth_user_groups; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.auth_user_groups (id, user_id, group_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_user_user_permissions; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.auth_user_user_permissions (id, user_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: django_admin_log; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) FROM stdin;
+1	2019-09-07 16:24:54.915063+09	1	Python	1	[{"added": {}}]	7	1
+2	2019-09-07 16:24:59.58852+09	2	C	1	[{"added": {}}]	7	1
+3	2019-09-07 16:25:05.813011+09	3	Java	1	[{"added": {}}]	7	1
+4	2019-09-07 16:25:16.43898+09	4	Javascript	1	[{"added": {}}]	7	1
+5	2019-09-07 16:25:22.858539+09	5	C++	1	[{"added": {}}]	7	1
+6	2019-09-07 16:25:31.153965+09	6	Swift	1	[{"added": {}}]	7	1
+7	2019-09-07 16:25:45.471181+09	7	Go	1	[{"added": {}}]	7	1
+8	2019-09-07 23:16:33.507906+09	1	LINE	1	[{"added": {}}]	10	1
+9	2019-09-07 23:16:40.562993+09	2	Google	1	[{"added": {}}]	10	1
+10	2019-09-07 23:16:53.329395+09	3	Wantedly	1	[{"added": {}}]	10	1
+11	2019-09-07 23:17:04.496146+09	4	Cyber Agent	1	[{"added": {}}]	10	1
+12	2019-09-07 23:17:42.908924+09	5	Mercari	1	[{"added": {}}]	10	1
+13	2019-09-07 23:18:00.79544+09	6	DeNA	1	[{"added": {}}]	10	1
+14	2019-09-07 23:18:08.209086+09	7	Yahoo	1	[{"added": {}}]	10	1
+15	2019-09-07 23:18:19.551501+09	8	Twitter	1	[{"added": {}}]	10	1
+16	2019-09-07 23:18:25.927018+09	9	Cookpad	1	[{"added": {}}]	10	1
+17	2019-09-07 23:18:35.024794+09	10	SanSan	1	[{"added": {}}]	10	1
+18	2019-09-07 23:18:48.687123+09	11	Recruit	1	[{"added": {}}]	10	1
+19	2019-09-07 23:19:01.666092+09	12	Voyage Group	1	[{"added": {}}]	10	1
+20	2019-09-07 23:19:06.665141+09	13	GMO	1	[{"added": {}}]	10	1
+21	2019-09-07 23:19:14.836818+09	14	繧ｨ繝繧ｹ繝ｪ繝ｼ	1	[{"added": {}}]	10	1
+22	2019-09-07 23:19:21.926283+09	15	TeamLab	1	[{"added": {}}]	10	1
+23	2019-09-07 23:19:26.000179+09	16	IBM	1	[{"added": {}}]	10	1
+24	2019-09-07 23:19:34.006531+09	17	PFN	1	[{"added": {}}]	10	1
+25	2019-09-07 23:19:48.527873+09	18	繧ｳ繝ｭ繝励Λ	1	[{"added": {}}]	10	1
+26	2019-09-07 23:35:24.180814+09	S00001	plass @p1ass Web邉ｻ	1	[{"added": {}}]	9	1
+27	2019-09-07 23:38:16.753633+09	S00002	Lorse @LorseKudos Web邉ｻ	1	[{"added": {}}]	9	1
+28	2019-09-07 23:44:44.218951+09	S00003	縺ｾ縺翫＆縺九↑ @ma_osakana App邉ｻ	1	[{"added": {}}]	9	1
+29	2019-09-07 23:45:56.085579+09	S00004	縺ｩ繧・@d0ra1998 Web邉ｻ	1	[{"added": {}}]	9	1
+30	2019-09-07 23:47:46.09599+09	S00005	Ueoka Honai @honai_uk Web邉ｻ	1	[{"added": {}}]	9	1
+31	2019-09-07 23:49:10.966367+09	S00006	繝上す繝舌し繝・く @shiba1014_ App邉ｻ	1	[{"added": {}}]	9	1
+32	2019-09-09 01:15:54.976654+09	S00001	plass @p1ass Server邉ｻ	2	[{"changed": {"fields": ["skill"]}}]	9	1
+33	2019-09-10 18:30:54.672073+09	S00006	繝上す繝舌し繝・く @shiba1014_ 1邉ｻ	2	[{"changed": {"fields": ["skill"]}}]	9	1
+34	2019-09-10 18:31:02.697412+09	S00005	Ueoka Honai @honai_uk 1邉ｻ	2	[{"changed": {"fields": ["skill"]}}]	9	1
+35	2019-09-10 18:31:10.237103+09	S00004	縺ｩ繧・@d0ra1998 1邉ｻ	2	[{"changed": {"fields": ["skill"]}}]	9	1
+36	2019-09-10 18:31:17.826933+09	S00003	縺ｾ縺翫＆縺九↑ @ma_osakana 1邉ｻ	2	[{"changed": {"fields": ["skill"]}}]	9	1
+37	2019-09-10 18:31:25.053845+09	S00002	Lorse @LorseKudos 1邉ｻ	2	[{"changed": {"fields": ["skill"]}}]	9	1
+38	2019-09-10 18:31:33.351011+09	S00001	plass @p1ass 1邉ｻ	2	[{"changed": {"fields": ["skill"]}}]	9	1
+39	2019-09-10 18:36:02.234441+09	S00006	繝上す繝舌し繝・く @shiba1014_ Web邉ｻ	2	[{"changed": {"fields": ["skill"]}}]	9	1
+40	2019-09-10 18:36:10.78588+09	S00005	Ueoka Honai @honai_uk Web邉ｻ	2	[{"changed": {"fields": ["skill"]}}]	9	1
+41	2019-09-11 10:48:19.630918+09	S00005	Ueoka Honai @honai_uk 1邉ｻ	2	[{"changed": {"fields": ["skill"]}}]	9	1
+42	2019-09-11 10:48:26.983611+09	S00006	繝上す繝舌し繝・く @shiba1014_ 1邉ｻ	2	[{"changed": {"fields": ["skill"]}}]	9	1
+43	2019-09-11 11:09:01.198659+09	1	Web	1	[{"added": {}}]	11	1
+44	2019-09-11 11:09:08.842453+09	2	App	1	[{"added": {}}]	11	1
+45	2019-09-11 11:09:12.617153+09	3	AI	1	[{"added": {}}]	11	1
+46	2019-09-11 11:09:23.503345+09	4	Server	1	[{"added": {}}]	11	1
+47	2019-09-11 12:24:49.959849+09	S00001	plass @p1ass Server邉ｻ	2	[{"changed": {"fields": ["skill", "github"]}}]	9	1
+48	2019-09-11 12:25:40.389664+09	S00002	Lorse @LorseKudos Web邉ｻ	2	[{"changed": {"fields": ["skill"]}}]	9	1
+49	2019-09-11 12:27:02.321225+09	S00003	縺ｾ縺翫＆縺九↑ @ma_osakana App邉ｻ	2	[{"changed": {"fields": ["intern_name", "skill"]}}]	9	1
+50	2019-09-11 12:42:07.973113+09	S00004	縺ｩ繧・@d0ra1998 Web邉ｻ	2	[{"changed": {"fields": ["skill"]}}]	9	1
+51	2019-09-11 12:45:32.701119+09	S00005	Ueoka Honai @_honai Web邉ｻ	2	[{"changed": {"fields": ["skill", "twitter_name", "twitter", "github"]}}]	9	1
+52	2019-09-11 12:46:19.56561+09	S00006	繝上す繝舌し繝・く @shiba1014_ App邉ｻ	2	[{"changed": {"fields": ["skill", "github"]}}]	9	1
+53	2019-09-12 16:04:19.802098+09	S00013	Web @test AI邉ｻ	3		9	1
+54	2019-09-12 16:04:19.82005+09	S00012	Yuto @test Web邉ｻ	3		9	1
+55	2019-09-12 16:04:19.822044+09	S00011	Yuto @test Web邉ｻ	3		9	1
+56	2019-09-12 16:04:19.823041+09	S00010	Yuto @testa Web邉ｻ	3		9	1
+57	2019-09-12 16:04:19.824072+09	S00009	Yuto @test App邉ｻ	3		9	1
+58	2019-09-12 16:04:19.825073+09	S00008	Yuto @test Web邉ｻ	3		9	1
+59	2019-09-12 16:04:19.826033+09	S00007	Yuto @test Web邉ｻ	3		9	1
+60	2019-09-12 16:04:44.969633+09	S00014	Yuto @test Web邉ｻ	3		9	1
+61	2019-09-12 16:05:06.18622+09	S00017	Yuto @test Web邉ｻ	3		9	1
+62	2019-09-12 16:05:06.195239+09	S00016	Yuto @test Web邉ｻ	3		9	1
+63	2019-09-12 16:05:06.196227+09	S00015	Yuto @test Web邉ｻ	3		9	1
+64	2019-09-12 18:57:41.329477+09	S00009	Yuto @test Web邉ｻ	3		9	1
+65	2019-09-12 18:57:49.435343+09	S00008	Yuto @test AI邉ｻ	3		9	1
+66	2019-09-12 18:57:49.480386+09	S00007	Yuto @test Server邉ｻ	3		9	1
+67	2019-09-13 11:50:08.119411+09	2	Yuto-Aoki	3		4	1
+68	2019-12-02 16:50:56.561373+09	1	Google	1	[{"added": {}}]	14	1
+69	2019-12-02 16:53:03.90458+09	2	繝・ャ繧ｯ繝励Ξ繝翫・驕灘ｴ	1	[{"added": {}}]	14	1
+70	2019-12-04 15:14:22.968802+09	1	Google	3		14	1
+71	2019-12-04 15:16:15.586662+09	3	Cookpad	1	[{"added": {}}]	14	1
+72	2019-12-04 15:17:48.787108+09	4	Cyber Agent	1	[{"added": {}}]	14	1
+73	2019-12-04 15:18:18.105121+09	8	Kotlin	1	[{"added": {}}]	7	1
+74	2019-12-04 15:18:33.507078+09	9	Ruby	1	[{"added": {}}]	7	1
+75	2019-12-04 15:18:56.024563+09	10	PHP	1	[{"added": {}}]	7	1
+76	2019-12-04 15:19:10.749895+09	11	Objective-C	1	[{"added": {}}]	7	1
+77	2019-12-04 15:20:54.862333+09	5	LINE	1	[{"added": {}}]	14	1
+78	2019-12-04 15:21:38.067888+09	6	PFN	1	[{"added": {}}]	14	1
+79	2019-12-04 15:22:35.604515+09	7	Recruit	1	[{"added": {}}]	14	1
+80	2019-12-04 15:55:24.322928+09	8	DeNA	1	[{"added": {}}]	14	1
+81	2019-12-04 15:56:58.771172+09	9	Google	1	[{"added": {}}]	14	1
+82	2019-12-04 15:58:18.305243+09	10	DreamArts	1	[{"added": {}}]	14	1
+83	2019-12-04 16:00:46.900269+09	11	繧｢繧ｫ繝・く	1	[{"added": {}}]	14	1
+84	2019-12-04 16:01:31.950131+09	12	繧ｨ繝繧ｹ繝ｪ繝ｼ	1	[{"added": {}}]	14	1
+85	2019-12-04 16:02:19.862458+09	13	TeamLab	1	[{"added": {}}]	14	1
+86	2019-12-04 16:03:05.603207+09	3	Cookpad	2	[{"changed": {"fields": ["score"]}}]	14	1
+87	2019-12-04 16:03:28.589965+09	7	Recruit	2	[{"changed": {"fields": ["score"]}}]	14	1
+88	2019-12-04 16:04:44.292077+09	14	Retty	1	[{"added": {}}]	14	1
+89	2019-12-04 16:05:41.477777+09	15	SanSan	1	[{"added": {}}]	14	1
+\.
+
+
+--
+-- Data for Name: django_content_type; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.django_content_type (id, app_label, model) FROM stdin;
+1	admin	logentry
+2	auth	permission
+3	auth	group
+4	auth	user
+5	contenttypes	contenttype
+6	sessions	session
+7	qboard	language
+8	qboard	profile
+9	qboard	superman
+10	qboard	internname
+11	qboard	skill
+12	qboard	candidate
+13	qboard	predict
+14	qboard	intern
+\.
+
+
+--
+-- Data for Name: django_migrations; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.django_migrations (id, app, name, applied) FROM stdin;
+1	contenttypes	0001_initial	2019-09-06 21:07:36.139431+09
+2	auth	0001_initial	2019-09-06 21:07:36.365083+09
+3	admin	0001_initial	2019-09-06 21:07:36.827368+09
+4	admin	0002_logentry_remove_auto_add	2019-09-06 21:07:36.916742+09
+5	admin	0003_logentry_add_action_flag_choices	2019-09-06 21:07:36.945535+09
+6	contenttypes	0002_remove_content_type_name	2019-09-06 21:07:37.007312+09
+7	auth	0002_alter_permission_name_max_length	2019-09-06 21:07:37.028777+09
+8	auth	0003_alter_user_email_max_length	2019-09-06 21:07:37.055408+09
+9	auth	0004_alter_user_username_opts	2019-09-06 21:07:37.083391+09
+10	auth	0005_alter_user_last_login_null	2019-09-06 21:07:37.11468+09
+11	auth	0006_require_contenttypes_0002	2019-09-06 21:07:37.120852+09
+12	auth	0007_alter_validators_add_error_messages	2019-09-06 21:07:37.148697+09
+13	auth	0008_alter_user_username_max_length	2019-09-06 21:07:37.199724+09
+14	auth	0009_alter_user_last_name_max_length	2019-09-06 21:07:37.231787+09
+15	auth	0010_alter_group_name_max_length	2019-09-06 21:07:37.261105+09
+16	auth	0011_update_proxy_permissions	2019-09-06 21:07:37.289809+09
+17	qboard	0001_initial	2019-09-06 21:07:37.393842+09
+18	sessions	0001_initial	2019-09-06 21:07:37.478007+09
+19	qboard	0002_auto_20190906_2110	2019-09-06 21:10:58.043255+09
+20	qboard	0003_internname_superman	2019-09-07 16:21:16.568219+09
+21	qboard	0004_auto_20190907_1629	2019-09-07 16:30:02.911687+09
+22	qboard	0005_superman_twitter_name	2019-09-07 23:30:08.038357+09
+23	qboard	0006_skill	2019-09-10 16:40:54.370392+09
+24	qboard	0007_auto_20190911_1106	2019-09-11 11:06:51.36145+09
+25	qboard	0008_auto_20190911_1222	2019-09-11 12:22:12.622894+09
+26	qboard	0009_auto_20190911_1241	2019-09-11 12:41:50.266987+09
+27	qboard	0010_predict	2019-09-11 16:05:58.590251+09
+28	qboard	0011_auto_20190912_1444	2019-09-12 14:44:21.330779+09
+29	qboard	0012_intern	2019-09-13 05:19:18.626937+09
+30	qboard	0013_auto_20191221_1805	2019-12-21 18:05:56.421041+09
+\.
+
+
+--
+-- Data for Name: django_session; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.django_session (session_key, session_data, expire_date) FROM stdin;
+2bhecd6vzv0v94muq5ryhkgdj9twf2he	NDNiNGQ4ZTY1MzI0YTI1NGYyNmFmZGUyNDgwODdkMGYyNWRjNjgxOTp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI0OTA4MzQ0ZWI4OWU2MjMwMjc0MmU1OTNlZDJmODc4YzJmZTE2Y2U2In0=	2019-09-27 12:21:57.783806+09
+tylb343vgqvffqioe5mz5xgs8shco1ec	NDNiNGQ4ZTY1MzI0YTI1NGYyNmFmZGUyNDgwODdkMGYyNWRjNjgxOTp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI0OTA4MzQ0ZWI4OWU2MjMwMjc0MmU1OTNlZDJmODc4YzJmZTE2Y2U2In0=	2019-12-16 16:48:54.099185+09
+xruai5pnby867v8ldloglo9yl5mf7gsq	YzE5ZmJjZTA2MTNlMDYxZjRlNDY1YTE2YTkwN2RmZGZhMDI3ZTU4ZDp7Il9hdXRoX3VzZXJfaWQiOiI2IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI2ZjE5MTlhMTliMjI0ZjBhZTI3YWRkZmFlNDYzMjYyYzA5MDlhMzFmIn0=	2020-01-06 00:05:44.861289+09
+\.
+
+
+--
+-- Data for Name: qboard_candidate; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.qboard_candidate (id, name, twitter_name, twitter, url, memo, github, skill_tag_id, intern_name_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: qboard_intern; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.qboard_intern (id, name, work, score, salary, url, language_id) FROM stdin;
+2	繝・ャ繧ｯ繝励Ξ繝翫・驕灘ｴ	譛ｪ邨碁ｨ薙°繧会ｼ代°譛医〒繧ｶ繝・き繝ｼ繝舌・繧ｰ縺ｫ縺ｪ繧後ｋ	0	0	http://techpreneur.jp/	1
+4	Cyber Agent	邏・縺区怦髢薙∝ｮ滄圀縺ｮ遉ｾ蜩｡縺ｨ蜷後§繧医≧縺ｫ縲∝ｮ溷漁邨碁ｨ薙ｒ縺吶ｋ蟆ｱ讌ｭ蝙九う繝ｳ繧ｿ繝ｼ繝ｳ繧ｷ繝・・縺ｧ縺吶・r\n\r\n繝｡繝・ぅ繧｢莠区･ｭ縲√ご繝ｼ繝莠区･ｭ縲√い繝峨ユ繧ｯ莠区･ｭ縲∫ｧ玖痩蜴溘Λ繝懃ｭ峨√し繧､繝舌・繧ｨ繝ｼ繧ｸ繧ｧ繝ｳ繝医げ繝ｫ繝ｼ繝励・讒倥・↑驛ｨ鄂ｲ縺ｧ謖第姶縺励※縺・◆縺縺阪∪縺吶・r\n\r\n邏・繝ｶ譛医・蟆ｱ讌ｭ譛滄俣縺ｮ髢薙↓縲∝ｰｱ讌ｭ蜈医・驛ｨ鄂ｲ縺縺代〒縺ｪ縺上∽ｺ区･ｭ驛ｨ繧呈ｨｪ譁ｭ縺励◆繝ｩ繝ｳ繝√↑縺ｩ繧帝幕蛯ｬ縺励√し繧､繝舌・繧ｨ繝ｼ繧ｸ繧ｧ繝ｳ繝亥・菴薙↓縺､縺・※遏･縺｣縺ｦ縺・◆縺縺代ｋ繝励Ο繧ｰ繝ｩ繝繧剃ｺ亥ｮ壹＠縺ｦ縺・∪縺吶・63	2000	https://www.cyberagent.co.jp/careers/students/tech/internship/	4
+5	LINE	髢狗匱繧ｨ繝ｳ繧ｸ繝九い\r\nLINE縺梧署萓帙☆繧句推繧ｵ繝ｼ繝薙せ・・INE縲´INE NEWS縲´INE繝槭Φ繧ｬ縺ｪ縺ｩ・峨♀繧医・髢｢騾｣縺ｮ髢狗匱繧呈球蠖薙＠縺ｾ縺吶・r\n\r\n\r\n讖滓｢ｰ蟄ｦ鄙偵お繝ｳ繧ｸ繝九い\r\nLINE縺ｮ蜈ｨ繧ｵ繝ｼ繝薙せ縺ｮ繝・・繧ｿ蛻・梵繝ｻ遐皮ｩｶ繝ｻ蠢懃畑縺ｮ縺溘ａ縺ｮ蟆る摩逧・↑髢狗匱邨・ｹ斐↓縺翫＞縺ｦ縲∬塘遨阪＆繧後◆繝・・繧ｿ縺ｮ邊ｾ陬ｽ縲∵ｩ滓｢ｰ蟄ｦ鄙偵ｒ蝓ｺ逶､縺ｫ縺励◆繧ｳ繝ｳ繝・Φ繝・耳阮ｦ繝ｻ繝輔ぅ繝ｫ繧ｿ繝ｪ繝ｳ繧ｰ繝ｻ繝ｦ繝ｼ繧ｶ繝ｼ繧ｿ繝ｼ繧ｲ繝・ぅ繝ｳ繧ｰ縺ｪ縺ｩ縺ｮ鬮伜ｺｦ縺ｪ繝・・繧ｿ蛻・梵繧定｡後＞縲∽ｺ区･ｭ縺ｮ譛驕ｩ蛹紋ｽ懈･ｭ繧呈球蠖薙＠縺ｾ縺吶・r\n\r\n\r\n- 繧ｻ繧ｭ繝･繝ｪ繝・ぅ繧ｨ繝ｳ繧ｸ繝九い\r\n繧ｻ繧ｭ繝･繝ｪ繝・ぅ縺ｮ蟆る摩驛ｨ鄂ｲ縺ｫ縺翫＞縺ｦ縲√し繝ｼ繝薙せ縺ｮ螳牙・諤ｧ繧貞ｮ医ｋ轤ｺ縺ｫ縲∽ｼ∫判谿ｵ髫弱°繧峨∬ｨｭ險医・髢狗匱繝ｻ驕狗畑縺昴ｌ縺槭ｌ縺ｮ繝輔ぉ繝ｼ繧ｺ縺ｧ閼・ｼｱ諤ｧ蛻・梵縲√う繝ｳ繧ｷ繝・Φ繝亥ｯｾ蠢懊↑縺ｩ繧呈球蠖薙＠縺ｾ縺吶・r\n\r\n\r\n- 繧､繝ｳ繝輔Λ繧ｨ繝ｳ繧ｸ繝九い\r\nLINE縺ｧ縺ｯ縲√し繝ｼ繝薙せ繧呈髪縺医ｋ繧､繝ｳ繝輔Λ縺ｯ荳也阜蜷・慍縺ｮ閾ｪ遉ｾIDC蜷ｫ繧√√☆縺ｹ縺ｦ閾ｪ遉ｾ縺ｧ險ｭ險医・讒狗ｯ峨・驕狗畑繧偵＠縺ｦ縺翫ｊ縲∝・荳也阜縺ｮ繝ｦ繝ｼ繧ｶ繝ｼ縺九ｉ縺ｮ闔ｫ螟ｧ縺ｪ繝医Λ繝輔ぅ繝・け縺ｫ蟇ｾ蠢懊☆繧狗ぜ縺ｮ迺ｰ蠅・ｧ狗ｯ峨・驕狗畑繧定｡後▲縺ｦ縺・∪縺吶ゅし繝ｼ繝舌・繝ｻ繝阪ャ繝医Ρ繝ｼ繧ｯ繝ｻ繝・・繧ｿ繝吶・繧ｹ縺ｪ縺ｩ縺ｮ蟆る摩螳ｶ縺ｨ縺励※縺ｮ讌ｭ蜍吶ｄ縲・°蝟ｶ閾ｪ蜍募喧縺ｫ髢｢縺吶ｋ髢狗匱繧呈球蠖薙＠縺ｾ縺吶・82	2000	https://linecorp.com/ja/career/newgrads/internship/engineer-tokyo	1
+6	PFN	莉雁ｹｴ縺ｮ螟上↓ PFN 譚ｱ莠ｬ繧ｪ繝輔ぅ繧ｹ縺ｧ辭ｱ諢上ｒ繧ゅ▲縺ｦ荳邱偵↓蜒阪＞縺ｦ縺上□縺輔ｋ繧､繝ｳ繧ｿ繝ｼ繝ｳ繧貞供髮・＠縺ｾ縺吶よ乖蟷ｴ縺ｾ縺ｧ縺ｫ縺泌ｿ懷供縺・◆縺縺・◆譁ｹ縺ｮ蜀阪お繝ｳ繝医Μ繝ｼ繧ょ庄閭ｽ縺ｧ縺呻ｼ井ｽ・＠縲∵里縺ｫ驕主悉縺ｮ繧､繝ｳ繧ｿ繝ｼ繝ｳ繧ｷ繝・・繝励Ο繧ｰ繝ｩ繝縺ｫ蜿ょ刈縺輔ｌ縺滓婿縺ｯ髯､縺阪∪縺呻ｼ峨よｩ滓｢ｰ蟄ｦ鄙偵・縺ｿ縺ｪ繧峨★縲√さ繝ｳ繝斐Η繝ｼ繧ｿ繧ｵ繧､繧ｨ繝ｳ繧ｹ縺ｮ蟷・ｺ・＞蛻・㍽縺九ｉ縲∫ｧ√◆縺｡縺ｨ荳邱偵↓譁ｰ縺励＞謚陦薙√た繝輔ヨ繧ｦ繧ｧ繧｢縲√し繝ｼ繝薙せ繧貞卸繧贋ｸ翫￡縺ｦ縺ｿ縺溘＞縺ｨ縺・≧蟄ｦ逕溘・縺ｿ縺ｪ縺輔∪縺ｮ縺泌ｿ懷供繧呈ｭ楢ｿ弱＞縺溘＠縺ｾ縺吶・74	2000	https://www.preferred-networks.jp/ja/news/internship2019	1
+8	DeNA	DeNA縺ｮ繧ｨ繝ｳ繧ｸ繝九い縺ｨ繝√・繝繧堤ｵ・ｓ縺ｧ縲ゞI/UX繧定・∴謚懊″縲・撼讖溯・隕∽ｻｶ縺ｾ縺ｧ繧呈ｺ縺溘＠縺溘い繝励Μ繧偵ユ繝ｼ繝槭↓豐ｿ縺｣縺ｦ髢狗匱縺励※縺・◆縺縺阪∪縺吶ゅメ繝ｼ繝髢狗匱縺ｧ縺ｮ險ｭ險医ｄ繝ｬ繝薙Η繝ｼ縺ｪ縺ｩ繧帝壹＠縺ｦDeNA縺ｧ縺ｮ繧ｨ繝ｳ繧ｸ繝九い讌ｭ蜍吶ｒ菴捺─縺励※縺上□縺輔＞・・58	1500	https://student.dena.com/internship/product_development/	7
+9	Google	繝励Ο繧ｰ繝ｩ繝縺ｮ蜑榊濠縺ｯ縲∝ｭｦ逕溘・逧・ｧ倥・謚陦鍋噪縺ｪ繧ｹ繧ｭ繝ｫ繧・た繝輔ヨ繧ｹ繧ｭ繝ｫ縺ｮ髢狗匱繧堤岼逧・→縺励※縺・∪縺吶ょ・ 8 蝗槭・繧ｯ繝ｩ繧ｹ繧貞ｮ滓命縺励∝ｭｦ逕溘・逧・ｧ倥↓蟆・擂縺ｮ遐皮ｩｶ縺ｨ繧ｭ繝｣繝ｪ繧｢縺ｫ蠖ｹ遶九▽遏･隴倥ｒ謠蝉ｾ帙＠縺ｾ縺吶ゅ％縺ｮ繧ｳ繝ｼ繧ｹ繧剃ｿｮ莠・☆繧九→ STEP 縺ｮ蠕悟濠縺ｫ蠢懷供縺ｧ縺阪ｋ繧医≧縺ｫ縺ｪ繧翫∪縺吶よ蕗閧ｲ髢狗匱繧ｳ繝ｼ繧ｹ縺ｯ譌･譛ｬ隱槭〒髢句ぎ縺輔ｌ縺ｾ縺吶・r\n\r\n繝励Ο繧ｰ繝ｩ繝縺ｮ蠕悟濠縺ｯ縲∵怏邨ｦ縺ｮ繧､繝ｳ繧ｿ繝ｼ繝ｳ繧ｷ繝・・ 繝励Ο繧ｰ繝ｩ繝縺ｧ縺吶よ蕗閧ｲ髢狗匱繧ｳ繝ｼ繧ｹ繧剃ｿｮ莠・＠縺溷ｿ懷供閠・・逧・ｧ倥↓縺ｯ縲√＞縺壹ｌ縺九・繧ｳ繧｢ 繧ｽ繝輔ヨ繧ｦ繧ｧ繧｢縺ｮ繝励Ο繧ｸ繧ｧ繧ｯ繝医′蜑ｲ繧雁ｽ薙※繧峨ｌ縺ｾ縺吶ょ盾蜉閠・・ Google 遉ｾ蜩｡縺ｮ繝√・繝縺ｨ蜊泌鴨縺励※繝励Ο繧ｸ繧ｧ繧ｯ繝医ｒ驕り｡後＠縺ｾ縺吶ゅう繝ｳ繧ｿ繝ｼ繝ｳ繧ｷ繝・・譛滄俣荳ｭ縺ｯ縲；oogle 縺ｮ繧ｨ繝ｳ繧ｸ繝九い縺・1 莠ｺ縲√Γ繝ｳ繧ｿ繝ｼ縺ｨ縺励※謖・ｰ弱＠縺ｾ縺吶ゅう繝ｳ繧ｿ繝ｼ繝ｳ繧ｷ繝・・ 繝励Ο繧ｸ繧ｧ繧ｯ繝医・蜑ｲ繧雁ｽ薙※縺ｯ縲∝推蟄ｦ逕溘・邨碁ｨ薙√せ繧ｭ繝ｫ縲・未蠢・・驥弱↓蝓ｺ縺･縺・※豎ｺ螳壹＆繧後∪縺吶・94	3000	https://careers.google.com/jobs/results/119716900788675270-2019-step/	5
+10	DreamArts	縲翫・NLP縺ｧ縲∝ロ縺丈ｺｺ縺ｮ縲悟鵠蜑ｵ縲阪ｒ螳溽樟縺吶ｋ繧ｵ繝ｼ繝薙せ繧帝幕逋ｺ縺励ｈ縺・ｼ√九欺r\n繝峨Μ繝ｼ繝繝ｻ繧｢繝ｼ繝・・繝薙ず繝阪せ繝√Ε繝・ヨ繧｢繝励Μ縲檎衍隧ｱ霈ｪ縲阪→NLP・郁・辟ｶ險隱槫・逅・ｼ峨・讖滓｢ｰ蟄ｦ鄙偵ｒ謗帙￠蜷医ｏ縺帙∽ｼ∵･ｭ縺ｧ蜒阪￥莠ｺ縺溘■縺ｮ縲・蜊泌卸 縲阪ｒ螳溽樟縺嶺ｸ悶・荳ｭ繧貞､蛾擠縺吶∋縺上∵眠縺溘↑繧ｵ繝ｼ繝薙せ繧貞卸繧雁・縺励※縺ｿ縺ｾ縺帙ｓ縺具ｼ歃r\n螳滄圀縺ｮ莨∵･ｭ縺ｮ繧ｳ繝溘Η繝九こ繝ｼ繧ｷ繝ｧ繝ｳ縺ｫ縺翫￠繧矩撼讒矩蛹悶ョ繝ｼ繧ｿ繧誰LP繝ｻ讖滓｢ｰ蟄ｦ鄙偵ｒ逕ｨ縺・※隗｣譫舌＠縲√ン繧ｸ繝阪せ繝√Ε繝・ヨ縺ｮ譁ｰ縺励＞繧ｵ繝ｼ繝薙せ縺ｫ邨・∩霎ｼ繧薙〒縺・◆縺縺阪∪縺吶・45	1000	https://hrmos.co/pages/dreamarts/jobs/0000170a	1
+11	繧｢繧ｫ繝・く	縺薙・螟上∵悽豌励・繧ｲ繝ｼ繝髢狗匱繧剃ｽ馴ｨ薙＠縺溘＞莠ｺ縲∵橿陦灘鴨縺ｮ閻戊ｩｦ縺励ｒ縺励◆縺・ｺｺ縺ｸ・―r\n\r\n2譌･髢薙〒莨∫判・医い繧､繝・い繧ｽ繝ｳ・峨°繧牙ｮ溯｣・∪縺ｧ縲√ご繝ｼ繝髢狗匱繧剃ｽ馴ｨ薙〒縺阪ｋ繧､繝ｳ繧ｿ繝ｼ繝ｳ繧ｷ繝・・縺ｧ縺吶・r\n髯舌ｉ繧後◆譎る俣縺ｮ荳ｭ縺ｧ縲∫匱諠ｳ蜉帙∵橿陦灘鴨縲√・繝ｭ繧ｸ繧ｧ繧ｯ繝医・繝阪ず繝｡繝ｳ繝亥鴨縲√・繝ｬ繧ｼ繝ｳ蜉帙・蜈ｨ縺ｦ繧偵ヵ繝ｫ豢ｻ逕ｨ縺励∝━蜍昴ｒ逶ｮ謖・＠縺ｦ縺・◆縺縺阪∪縺吶・r\n\r\n莉雁ｹｴ縺ｯ縲後き繝ｩ繝輔Ν縲阪ｒ繝・・繝槭↓髢狗匱縺・◆縺縺阪∪縺吶・r\n3縲・莠ｺ縺ｮ繝√・繝繧堤ｵ・∩縲∝推繝√・繝縺ｫ繝｡繝ｳ繧ｿ繝ｼ縺後▽縺阪・幕逋ｺ繧偵し繝昴・繝医・r\n莉雁ｹｴ縺ｧ5蟷ｴ逶ｮ繧定ｿ弱∴縺ｾ縺吶′縲∵ｯ主ｹｴ縲√％縺繧上ｊ縺ｮ縺ゅｋ2D縲・D繧ｲ繝ｼ繝繧ХR縲、R繧ｲ繝ｼ繝縺ｨ縺・▲縺溷区ｧ貅｢繧後ｋ繧ｲ繝ｼ繝縺檎函縺ｾ繧後※縺・∪縺吶・35	1000	https://aktsk.jp/recruit/gamejam2019/	7
+7	Recruit	繝・・繧ｿ隗｣譫舌〒繝薙ず繝阪せ縺ｫ螟蛾擠繧偵ｂ縺溘ｉ縺兔r\n\r\n繝ｪ繧ｯ繝ｫ繝ｼ繝医・縲√弱§繧・ｉ繧薙上惨UUMO縲上弱ち繧ｦ繝ｳ繝ｯ繝ｼ繧ｯ縲上皐OT PEPPER縲・..縺ｪ縺ｩ螟ｧ蟆・00莉･荳翫・繧ｵ繝ｼ繝薙せ縺九ｉ逕溘∪繧後ｋ讒倥・↑鬆伜沺縺ｮ繝・・繧ｿ繧剃ｿ晄怏縺励∝ｮ滄圀縺ｮ繧ｫ繧ｹ繧ｿ繝槭・縺ｮ雉ｼ雋ｷ陦悟虚縺ｫ閾ｳ繧九∪縺ｧ縺ｮ閹ｨ螟ｧ縺ｪ繝・・繧ｿ繧定塘遨阪＠縺ｦ縺・∪縺吶よ悽繧､繝ｳ繧ｿ繝ｼ繝ｳ繧ｷ繝・・縺ｧ縺ｯ縲∬ｱ雁ｯ後↑繝・・繧ｿ縺後←縺ｮ繧医≧縺ｫ萓｡蛟､縺ｨ縺励※霆｢謠帙＆繧後∫､ｾ莨壹↓驍・・縺輔ｌ縺ｦ縺・￥縺ｮ縺九ｒ菴捺─縺・◆縺縺代∪縺吶ょ━繧後◆邨先棡繧・∫ｭ九・濶ｯ縺・姶逡･繧呈緒縺代◆繧｢繧ｦ繝医・繝・ヨ縺ｫ縺ｯ縲∽ｺ区･ｭ蛹匁ｩ滉ｼ壹ｒ莠亥ｮ壹＠縺ｦ縺・∪縺吶・72	2500	https://engineers.recruit-jinji.jp/event/s-internship-2019-datascientist/	1
+12	繧ｨ繝繧ｹ繝ｪ繝ｼ	驛ｨ鄂ｲ驟榊ｱ槫梛譛臥ｵｦ繧､繝ｳ繧ｿ繝ｼ繝ｳ・・譌･髢難ｼ噂r\n\r\n讌ｭ蜍吶↓蜊ｳ縺励◆莉･荳九・3縺､縺ｮ繝・・繝槭°繧峨∬・蜻ｳ繧・ｿ怜髄縺ｫ蜷医ｏ縺帙※隱ｲ鬘後ｒ驕ｸ縺ｳ縲∝叙繧顔ｵ・ｓ縺ｧ縺・◆縺縺阪∪縺吶・r\n\r\n1.螳滄圀縺ｫ菴ｿ繧上ｌ縺ｦ縺・ｋ讖滓｢ｰ蟄ｦ鄙偵Δ繝・Ν縺ｮ謾ｹ蝟Ыr\n2.蜷・ｨｮ繝ｭ繧ｰ繝・・繧ｿ縺ｮ蛻・梵縺ｫ蝓ｺ縺･縺・◆繧ｵ繝ｼ繝薙せ謾ｹ蝟・命遲也ｫ区｡・r\n3.繝・・繧ｿ繧呈ｴｻ逕ｨ縺励◆陬ｽ阮ｬ莨∵･ｭ繝槭・繧ｱ繝・ぅ繝ｳ繧ｰ譁ｰ隕丈ｼ∫判遶区｡・70	2000	https://open.talentio.com/1/c/m3/requisitions/detail/11930	1
+13	TeamLab	Web蛻ｶ菴懊√い繝励Μ髢狗匱縲√ョ繧ｸ繧ｿ繝ｫ遨ｺ髢捺ｼ泌・縺ｪ縺ｩ縺ｮ螳滄圀縺ｮ讌ｭ蜍吩ｽ馴ｨ薙ｄ隱ｲ鬘後↓蜿悶ｊ邨・∩縺ｾ縺吶・r\n\r\n蜿ょ刈閠・↓縺ｯ諡・ｽ薙・繝｡繝ｳ繝舌・縺後▽縺阪∝ｿ・ｦ√↑謚陦薙ｄ遏･隴倥・繧ｵ繝昴・繝医ｒ蜿励￠縺ｪ縺後ｉ縲√＃閾ｪ霄ｫ縺ｮ繧ｹ繧ｭ繝ｫ縺ｨ菴馴ｨ薙＠縺溘＞蜀・ｮｹ繧偵♀閨槭″縺励√＃逶ｸ隲・・荳翫∝叙繧顔ｵ・・蜀・ｮｹ繧偵＃逕ｨ諢上＠縺ｾ縺吶ゅ∪縺壹・闊亥袖縺ｮ縺ゅｋ閨ｷ遞ｮ繧帝∈縺ｳ縲√♀豌苓ｻｽ縺ｫ縺泌ｿ懷供縺上□縺輔＞縲・25	1000	https://internship.team-lab.com/	10
+3	Cookpad	Treasure縺ｮ繝・・繝槭・縲隈o險隱槭ｒ菴ｿ縺｣縺ｦ蟄ｦ縺ｶ縲∽ｾ｡蛟､縺ｮ縺ゅｋ繧ゅ・蜑ｵ繧翫→繝√・繝髢狗匱縲崎・蛻・′菴懊ｊ縺溘＞繧ゅ・縲√→縺・≧隕也せ縺縺代〒縺ｪ縺上∝ｮ滄圀縺ｫ菴ｿ縺・Θ繝ｼ繧ｶ繝ｼ隕也せ繧呈戟縺｡縺ｪ縺後ｉ繧ｹ繝｢繝ｼ繝ｫ繧ｹ繧ｿ繝ｼ繝医〒辟｡鬧・↑縺城幕逋ｺ縺ｮ繧ｵ繧､繧ｯ繝ｫ繧貞屓縺励※縺・￥縺溘ａ縺ｫ縺ｯ縺ｩ縺・＠縺ｦ縺・▲縺溘ｉ縺・＞縺ｮ縺具ｼ溘メ繝ｼ繝髢狗匱繧貞刈騾溘＆縺帙ｋ繝医ャ繝励お繝ｳ繧ｸ繝九い縺ｮ閠・∴譁ｹ繧・ｿ呈・縺ｨ縺ｯ・溘・繝ｭ繧ｰ繝ｩ繝溘Φ繧ｰ邨碁ｨ楢・′荳蜷後↓髮・∪繧翫∵怙蜈育ｫｯ縺ｮ繝輔ぅ繝ｼ繝ｫ繝峨〒豢ｻ霄阪☆繧九ヨ繝・・繧ｨ繝ｳ繧ｸ繝九い縺ｮ謖・ｰ弱・繧ゅ→縲√◆縺｣縺滉ｸ蛾ｱ髢薙〒縲√後お繝ｳ繧ｸ繝九い縲阪→縺励※遐斐℃貔・∪縺輔ｌ縺ｦ縺・￥閾ｪ蛻・ｒ菴捺─縺吶ｋ縺繧阪≧縲・60	1500	https://internship.cookpad.com/2019/summer/	7
+14	Retty	縲彝etty Summer Intenship for 2021 engineer縲・\r\n繧ｰ繝ｫ繝｡諠・ｱ繧ｵ繝ｼ繝薙せRetty縺ｮWEB髢狗匱繝√・繝縺ｫ螳滄圀縺ｫ謇螻槭＠縺ｦ縲∵眠隕上い繝励Μ繧ｱ繝ｼ繧ｷ繝ｧ繝ｳ縺ｮ繝輔Ο繝ｳ繝医お繝ｳ繝蛾幕逋ｺ繧偵＠縺ｦ縺・◆縺縺阪∪縺吶・\r\n蜈郁ｼｩ繧ｨ繝ｳ繧ｸ繝九い縺後Γ繝ｳ繧ｿ繝ｼ縺ｨ縺励※繧ｵ繝昴・繝医＠縺ｾ縺吶ょｮ溷漁縺ｫ霑代＞繧｢繝峨ヰ繧､繧ｹ縺九ｉ髢狗匱蟾･遞九ｒ蟄ｦ縺ｹ繧九◆繧√∬ｨｭ險亥鴨繧・ｻ墓ｧ倡ｭ門ｮ壹∝ｮ溯｣・鴨遲臥樟蝣ｴ縺ｧ豢ｻ縺阪ｋ髢狗匱繧ｹ繧ｭ繝ｫ繝ｻ邨碁ｨ薙ｒ蟄ｦ縺ｶ縺薙→縺後〒縺阪∪縺吶・r\n\r\n繧､繝ｳ繧ｿ繝ｼ繝ｳ逕ｨ縺ｮ繝励Ο繧ｸ繧ｧ繧ｯ繝医□縺九ｉ縺薙◎譛蛻昴懈怙蠕後∪縺ｧ閾ｪ蛻・・霄ｫ縺ｧ閠・∴繝ｻ險ｭ險医・螳溯｣・☆繧九％縺ｨ縺後〒縺阪・繝ｭ繝繧ｯ繝医・1竊・0繧剃ｽ馴ｨ薙☆繧九％縺ｨ縺後〒縺阪ｋ繧､繝ｳ繧ｿ繝ｼ繝ｳ縺ｨ縺ｪ縺｣縺ｦ縺・∪縺吶・r\n\r\nRetty縺ｮ螳滄圀縺ｮWeb繝√・繝縺ｧ菴ｿ繧上ｌ縺ｦ縺・ｋVue.js/Webpack繧剃ｽｿ縺・幕逋ｺ縺励※縺・◆縺縺阪∪縺吶ゅ◎縺ｮ莉萌ithub縺ｧ邂｡逅・＠縲ヾlack縺ｧ繧ｳ繝溘Η繝九こ繝ｼ繧ｷ繝ｧ繝ｳ繧貞叙繧狗ｭ臥樟蝣ｴ縺ｨ蜷梧ｧ倥・繝・・繝ｫ繧剃ｽｿ縺・ｮ滄圀縺ｮ髢狗匱迴ｾ蝣ｴ繧剃ｽ馴ｨ薙＠縺ｦ縺・◆縺縺阪∪縺吶・r\n\r\n蜍､蜍呎凾髢薙ｄ譎らｵｦ縺ｫ縺､縺・※縺ｯWantedly縺ｮ迚ｹ諤ｧ荳願ｨ倩ｼ峨′縺ｧ縺阪°縺ｭ繧九◆繧√＃蠢懷供鬆ゅ″縺ｾ縺励◆荳翫〒蛻･騾斐♀蝠上＞蜷医ｏ縺帙＞縺溘□縺代∪縺吶→蟷ｸ縺・〒縺吶・32	1000	https://www.wantedly.com/projects/316349	4
+15	SanSan	4蜷埼剞螳壹〒21蜊貞髄縺然&D繧ｵ繝槭・繧､繝ｳ繧ｿ繝ｼ繝ｳ繧帝幕蛯ｬ縺励∪縺吶・譛蜑咲ｷ壹〒豢ｻ霄阪＠縺ｦ縺・ｋ繝・・繧ｿ繧ｵ繧､繧ｨ繝ｳ繝・ぅ繧ｹ繝医・謖・ｰ弱・蜈・√ョ繝ｼ繧ｿ蜃ｦ逅・°繧我ｻｮ隱ｬ讀懆ｨｼ繧堤ｵ後※縲∵怙蠕後↓繝薙ず繝阪せ縺ｫ逕溘°縺吶∪縺ｧ縺ｮ螳溷鴨繧偵▽縺代※鬆ゅ″縺ｾ縺吶・\r\n\r\n笆笆笆｡ 繧､繝ｳ繧ｿ繝ｼ繝ｳ縺ｮ迚ｹ蠕ｴ 笆｡笆笆\r\n 笳・繝・・繧ｿ繧ｵ繧､繧ｨ繝ｳ繝・ぅ繧ｹ繝医↓繧医ｋ雎雁ｯ後↑繝輔ぅ繝ｼ繝峨ヰ繝・け 譛蜑咲ｷ壹〒豢ｻ霄阪＠縺ｦ縺・ｋ繝・・繧ｿ繧ｵ繧､繧ｨ繝ｳ繝・ぅ繧ｹ繝医′縲∝ｰょｱ槭〒繧ｵ繝昴・繝医＞縺溘＠縺ｾ縺吶・縺昴・縺溘ａ縲∝鵠蜒阪・荳ｭ縺ｧ螳滄圀縺ｮ繝薙ず繝阪せ縺ｮ迴ｾ蝣ｴ縺ｧ菴ｿ繧上ｌ繧九ョ繝ｼ繧ｿ隗｣譫舌せ繧ｭ繝ｫ繧定ｺｫ縺ｫ縺､縺代ｋ縺薙→縺悟庄閭ｽ縺ｧ縺吶・r\n \r\n笳・隱ｲ鬘後・繝ｼ繧ｹ縺ｧ縺ｯ縺ｪ縺上√Μ繧｢繝ｫ縺ｪ螳溷漁菴馴ｨ・縺薙・繧､繝ｳ繧ｿ繝ｼ繝ｳ縺ｧ縺ｯ縺ｿ縺ｪ縺輔ｓ縺ｮ蟶梧悍縺ｨ驕ｩ諤ｧ縺ｫ繧医▲縺ｦ蜿悶ｊ邨・・繝・・繝槭・險ｭ螳壹＠縺ｾ縺吶′縲・荳蛻・ｪｲ鬘後・荳弱∴縺ｾ縺帙ｓ縲ゅ↑縺懊↑繧峨√ン繧ｸ繝阪せ縺ｧ縺ｯ隱ｲ鬘後ｒ隕九▽縺代ｋ縺薙→縺薙◎縺碁屮縺励￥縲∽ｾ｡蛟､縺ｮ縺ゅｋ縺薙→縺縺九ｉ縺ｧ縺吶・逧・＆繧楢・霄ｫ縺ｧ繝・・繧ｿ縺九ｉ縺ｮ莉ｮ隱ｬ遶九※縲∵､懆ｨｼ縲∝ｮ溘ン繧ｸ繝阪せ縺ｸ縺ｮ萓｡蛟､霆｢謠帙∪縺ｧ縲√◎縺ｮ蜈ｨ縺ｦ繧剃ｽ捺─縺励※鬆ゅ″縺ｾ縺吶・r\n\r\n 笳・螳滄圀縺ｮ繧ｵ繝ｼ繝薙せ螳溯｣・ｒ蜑肴署縺ｨ縺励◆遐皮ｩｶ髢狗匱 萓具ｼ售ansan Labs縺ｮ髢狗匱縲・・ttps://jp.corp-sansan.com/dsoc/labs.html・・譁ｰ縺溘↑萓｡蛟､繧堤函縺ｿ蜃ｺ縺吶∋縺上∫皮ｩｶ髢狗匱邨先棡繧貞ｮ滄ｨ鍋噪縺ｫ繧ｵ繝ｼ繝薙せ縺ｨ縺励※謠蝉ｾ帙☆繧句ｴ縺ｧ縺ゅｋSansan Labs縺後≠繧翫∪縺吶・縺薙・Sansan Labs縺ｮ譁ｰ讖溯・縺ｨ縺励※螳溯｣・☆繧九％縺ｨ繧貞燕謠舌→縺励◆繝・・繧ｿ蛻・梵縺ｨ髢狗匱繧定｡後▲縺ｦ縺・◆縺縺上％縺ｨ縺ｧ縲∫皮ｩｶ髢狗匱縺ｮ驢埼・蜻ｳ縺ｨ讌ｽ縺励＆繧貞袖繧上≧縺薙→縺悟・譚･縺ｾ縺吶・18	1300	https://www.wantedly.com/projects/307622	2
+\.
+
+
+--
+-- Data for Name: qboard_internname; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.qboard_internname (id, name) FROM stdin;
+1	LINE
+2	Google
+3	Wantedly
+4	Cyber Agent
+5	Mercari
+6	DeNA
+7	Yahoo
+8	Twitter
+9	Cookpad
+10	SanSan
+11	Recruit
+12	Voyage Group
+13	GMO
+14	繧ｨ繝繧ｹ繝ｪ繝ｼ
+15	TeamLab
+16	IBM
+17	PFN
+18	繧ｳ繝ｭ繝励Λ
+\.
+
+
+--
+-- Data for Name: qboard_language; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.qboard_language (id, language) FROM stdin;
+1	Python
+2	C
+3	Java
+4	Javascript
+5	C++
+6	Swift
+7	Go
+8	Kotlin
+9	Ruby
+10	PHP
+11	Objective-C
+\.
+
+
+--
+-- Data for Name: qboard_predict; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.qboard_predict (id, programming, develop_num, gpa, atcoder, score, language_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: qboard_profile; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.qboard_profile (id, age, gender, univercity, faculty, department, user_id, degree, email_address, grade, highschool, memo, twitter) FROM stdin;
+B00001	20	0	鬥夜・螟ｧ蟄ｦ譚ｱ莠ｬ	驛ｽ蟶よ蕗鬢雁ｭｦ驛ｨ	驛ｽ蟶よ蕗鬢雁ｭｦ遘代逅・ｷ･蟄ｦ邉ｻ縲髮ｻ豌鈴崕蟄仙ｷ･蟄ｦ繧ｳ繝ｼ繧ｹ	4	0	yuuto3039@gmail.com	2	蜈ｬ譁・嵜髫帛ｭｦ蝨・	
+B00002	21	1	鬥夜・螟ｧ蟄ｦ譚ｱ莠ｬ	驛ｽ蟶よ蕗鬢雁ｭｦ驛ｨ	驛ｽ蟶よ蕗鬢雁ｭｦ遘代逅・ｷ･蟄ｦ邉ｻ縲髮ｻ豌鈴崕蟄仙ｷ･蟄ｦ繧ｳ繝ｼ繧ｹ	6	0	aaa@example.com	3	蜈ｬ譁・嵜髫帛ｭｦ蝨・	
+\.
+
+
+--
+-- Data for Name: qboard_skill; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.qboard_skill (id, name) FROM stdin;
+1	Web
+2	App
+3	AI
+4	Server
+\.
+
+
+--
+-- Data for Name: qboard_superman; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.qboard_superman (id, name, twitter, url, twitter_name, github, skill_id) FROM stdin;
+S00001	plass	@p1ass	https://blog.p1ass.com/	p1ass	https://github.com/p1ass	4
+S00002	Lorse	@LorseKudos	https://lorse.hatenablog.com/entry/2019/08/03/223000	LorseKudos	\N	1
+S00003	縺ｾ縺翫＆縺九↑	@ma_osakana	https://note.mu/maosakana/n/n26f9cae51ae8	ma_osakana	\N	2
+S00004	縺ｩ繧・@d0ra1998	https://blog.minoru.dev/2019/2019-summer-intern-wantedly/	d0ra1998	\N	1
+S00005	Ueoka Honai	@_honai	https://honai.me/blog/post/catechjob-openrec	_honai	https://honai.me	1
+S00006	繝上す繝舌し繝・く	@shiba1014_	https://www.ht.sfc.keio.ac.jp/~shiba/portfolio/	shiba1014_	https://github.com/shiba1014	2
+\.
+
+
+--
+-- Data for Name: qboard_superman_intern_name; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.qboard_superman_intern_name (id, superman_id, internname_id) FROM stdin;
+1	S00001	1
+2	S00001	4
+3	S00001	6
+4	S00002	1
+5	S00002	18
+6	S00002	3
+7	S00002	7
+8	S00003	8
+9	S00003	1
+10	S00003	5
+11	S00004	3
+12	S00005	4
+13	S00006	9
+14	S00006	2
+15	S00006	4
+16	S00006	5
+17	S00003	16
+18	S00003	11
+\.
+
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.auth_group_id_seq', 1, false);
+
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.auth_group_permissions_id_seq', 1, false);
+
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.auth_permission_id_seq', 56, true);
+
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.auth_user_groups_id_seq', 1, false);
+
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.auth_user_id_seq', 6, true);
+
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.auth_user_user_permissions_id_seq', 1, false);
+
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 89, true);
+
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.django_content_type_id_seq', 14, true);
+
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 30, true);
+
+
+--
+-- Name: qboard_candidate_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.qboard_candidate_id_seq', 1, false);
+
+
+--
+-- Name: qboard_intern_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.qboard_intern_id_seq', 15, true);
+
+
+--
+-- Name: qboard_internname_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.qboard_internname_id_seq', 18, true);
+
+
+--
+-- Name: qboard_language_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.qboard_language_id_seq', 11, true);
+
+
+--
+-- Name: qboard_predict_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.qboard_predict_id_seq', 1, false);
+
+
+--
+-- Name: qboard_skill_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.qboard_skill_id_seq', 4, true);
+
+
+--
+-- Name: qboard_superman_intern_name_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.qboard_superman_intern_name_id_seq', 25, true);
+
+
+--
+-- Name: auth_group auth_group_name_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_group
+    ADD CONSTRAINT auth_group_name_key UNIQUE (name);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_group_id_permission_id_0cd325b0_uniq; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_group_id_permission_id_0cd325b0_uniq UNIQUE (group_id, permission_id);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_group auth_group_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_group
+    ADD CONSTRAINT auth_group_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_permission auth_permission_content_type_id_codename_01ab375a_uniq; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_content_type_id_codename_01ab375a_uniq UNIQUE (content_type_id, codename);
+
+
+--
+-- Name: auth_permission auth_permission_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_groups auth_user_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_groups auth_user_groups_user_id_group_id_94350c0c_uniq; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_user_id_group_id_94350c0c_uniq UNIQUE (user_id, group_id);
+
+
+--
+-- Name: auth_user auth_user_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_user
+    ADD CONSTRAINT auth_user_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permissions_user_id_permission_id_14a6b632_uniq; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_user_id_permission_id_14a6b632_uniq UNIQUE (user_id, permission_id);
+
+
+--
+-- Name: auth_user auth_user_username_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_user
+    ADD CONSTRAINT auth_user_username_key UNIQUE (username);
+
+
+--
+-- Name: django_admin_log django_admin_log_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_content_type django_content_type_app_label_model_76bd3d3b_uniq; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.django_content_type
+    ADD CONSTRAINT django_content_type_app_label_model_76bd3d3b_uniq UNIQUE (app_label, model);
+
+
+--
+-- Name: django_content_type django_content_type_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.django_content_type
+    ADD CONSTRAINT django_content_type_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_migrations django_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.django_migrations
+    ADD CONSTRAINT django_migrations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_session django_session_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.django_session
+    ADD CONSTRAINT django_session_pkey PRIMARY KEY (session_key);
+
+
+--
+-- Name: qboard_candidate qboard_candidate_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.qboard_candidate
+    ADD CONSTRAINT qboard_candidate_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: qboard_intern qboard_intern_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.qboard_intern
+    ADD CONSTRAINT qboard_intern_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: qboard_internname qboard_internname_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.qboard_internname
+    ADD CONSTRAINT qboard_internname_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: qboard_language qboard_language_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.qboard_language
+    ADD CONSTRAINT qboard_language_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: qboard_predict qboard_predict_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.qboard_predict
+    ADD CONSTRAINT qboard_predict_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: qboard_profile qboard_profile_email_address_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.qboard_profile
+    ADD CONSTRAINT qboard_profile_email_address_key UNIQUE (email_address);
+
+
+--
+-- Name: qboard_profile qboard_profile_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.qboard_profile
+    ADD CONSTRAINT qboard_profile_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: qboard_profile qboard_profile_user_id_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.qboard_profile
+    ADD CONSTRAINT qboard_profile_user_id_key UNIQUE (user_id);
+
+
+--
+-- Name: qboard_skill qboard_skill_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.qboard_skill
+    ADD CONSTRAINT qboard_skill_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: qboard_superman_intern_name qboard_superman_intern_n_superman_id_internname_i_f862573c_uniq; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.qboard_superman_intern_name
+    ADD CONSTRAINT qboard_superman_intern_n_superman_id_internname_i_f862573c_uniq UNIQUE (superman_id, internname_id);
+
+
+--
+-- Name: qboard_superman_intern_name qboard_superman_intern_name_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.qboard_superman_intern_name
+    ADD CONSTRAINT qboard_superman_intern_name_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: qboard_superman qboard_superman_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.qboard_superman
+    ADD CONSTRAINT qboard_superman_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_group_name_a6ea08ec_like; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX auth_group_name_a6ea08ec_like ON public.auth_group USING btree (name varchar_pattern_ops);
+
+
+--
+-- Name: auth_group_permissions_group_id_b120cbf9; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX auth_group_permissions_group_id_b120cbf9 ON public.auth_group_permissions USING btree (group_id);
+
+
+--
+-- Name: auth_group_permissions_permission_id_84c5c92e; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX auth_group_permissions_permission_id_84c5c92e ON public.auth_group_permissions USING btree (permission_id);
+
+
+--
+-- Name: auth_permission_content_type_id_2f476e4b; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX auth_permission_content_type_id_2f476e4b ON public.auth_permission USING btree (content_type_id);
+
+
+--
+-- Name: auth_user_groups_group_id_97559544; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX auth_user_groups_group_id_97559544 ON public.auth_user_groups USING btree (group_id);
+
+
+--
+-- Name: auth_user_groups_user_id_6a12ed8b; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX auth_user_groups_user_id_6a12ed8b ON public.auth_user_groups USING btree (user_id);
+
+
+--
+-- Name: auth_user_user_permissions_permission_id_1fbb5f2c; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX auth_user_user_permissions_permission_id_1fbb5f2c ON public.auth_user_user_permissions USING btree (permission_id);
+
+
+--
+-- Name: auth_user_user_permissions_user_id_a95ead1b; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX auth_user_user_permissions_user_id_a95ead1b ON public.auth_user_user_permissions USING btree (user_id);
+
+
+--
+-- Name: auth_user_username_6821ab7c_like; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX auth_user_username_6821ab7c_like ON public.auth_user USING btree (username varchar_pattern_ops);
+
+
+--
+-- Name: django_admin_log_content_type_id_c4bce8eb; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX django_admin_log_content_type_id_c4bce8eb ON public.django_admin_log USING btree (content_type_id);
+
+
+--
+-- Name: django_admin_log_user_id_c564eba6; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX django_admin_log_user_id_c564eba6 ON public.django_admin_log USING btree (user_id);
+
+
+--
+-- Name: django_session_expire_date_a5c62663; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX django_session_expire_date_a5c62663 ON public.django_session USING btree (expire_date);
+
+
+--
+-- Name: django_session_session_key_c0390e0f_like; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX django_session_session_key_c0390e0f_like ON public.django_session USING btree (session_key varchar_pattern_ops);
+
+
+--
+-- Name: qboard_candidate_intern_name_id_73cdbb93; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX qboard_candidate_intern_name_id_73cdbb93 ON public.qboard_candidate USING btree (intern_name_id);
+
+
+--
+-- Name: qboard_candidate_skill_tag_id_db28edb1; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX qboard_candidate_skill_tag_id_db28edb1 ON public.qboard_candidate USING btree (skill_tag_id);
+
+
+--
+-- Name: qboard_intern_language_id_63bb2a15; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX qboard_intern_language_id_63bb2a15 ON public.qboard_intern USING btree (language_id);
+
+
+--
+-- Name: qboard_predict_language_id_396e232f; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX qboard_predict_language_id_396e232f ON public.qboard_predict USING btree (language_id);
+
+
+--
+-- Name: qboard_profile_email_address_17d95f73_like; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX qboard_profile_email_address_17d95f73_like ON public.qboard_profile USING btree (email_address varchar_pattern_ops);
+
+
+--
+-- Name: qboard_profile_id_b4543f09_like; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX qboard_profile_id_b4543f09_like ON public.qboard_profile USING btree (id varchar_pattern_ops);
+
+
+--
+-- Name: qboard_superman_id_6bf629a2_like; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX qboard_superman_id_6bf629a2_like ON public.qboard_superman USING btree (id varchar_pattern_ops);
+
+
+--
+-- Name: qboard_superman_intern_name_internname_id_59e404ef; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX qboard_superman_intern_name_internname_id_59e404ef ON public.qboard_superman_intern_name USING btree (internname_id);
+
+
+--
+-- Name: qboard_superman_intern_name_superman_id_58a80794; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX qboard_superman_intern_name_superman_id_58a80794 ON public.qboard_superman_intern_name USING btree (superman_id);
+
+
+--
+-- Name: qboard_superman_intern_name_superman_id_58a80794_like; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX qboard_superman_intern_name_superman_id_58a80794_like ON public.qboard_superman_intern_name USING btree (superman_id varchar_pattern_ops);
+
+
+--
+-- Name: qboard_superman_skill_id_3e8f2c93; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX qboard_superman_skill_id_3e8f2c93 ON public.qboard_superman USING btree (skill_id);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissio_permission_id_84c5c92e_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissio_permission_id_84c5c92e_fk_auth_perm FOREIGN KEY (permission_id) REFERENCES public.auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_group_id_b120cbf9_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_group_id_b120cbf9_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES public.auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_permission auth_permission_content_type_id_2f476e4b_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_content_type_id_2f476e4b_fk_django_co FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_groups auth_user_groups_group_id_97559544_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_group_id_97559544_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES public.auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_groups auth_user_groups_user_id_6a12ed8b_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_user_id_6a12ed8b_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm FOREIGN KEY (permission_id) REFERENCES public.auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: django_admin_log django_admin_log_content_type_id_c4bce8eb_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_content_type_id_c4bce8eb_fk_django_co FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: django_admin_log django_admin_log_user_id_c564eba6_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_user_id_c564eba6_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: qboard_candidate qboard_candidate_intern_name_id_73cdbb93_fk_qboard_in; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.qboard_candidate
+    ADD CONSTRAINT qboard_candidate_intern_name_id_73cdbb93_fk_qboard_in FOREIGN KEY (intern_name_id) REFERENCES public.qboard_internname(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: qboard_candidate qboard_candidate_skill_tag_id_db28edb1_fk_qboard_skill_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.qboard_candidate
+    ADD CONSTRAINT qboard_candidate_skill_tag_id_db28edb1_fk_qboard_skill_id FOREIGN KEY (skill_tag_id) REFERENCES public.qboard_skill(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: qboard_intern qboard_intern_language_id_63bb2a15_fk_qboard_language_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.qboard_intern
+    ADD CONSTRAINT qboard_intern_language_id_63bb2a15_fk_qboard_language_id FOREIGN KEY (language_id) REFERENCES public.qboard_language(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: qboard_predict qboard_predict_language_id_396e232f_fk_qboard_language_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.qboard_predict
+    ADD CONSTRAINT qboard_predict_language_id_396e232f_fk_qboard_language_id FOREIGN KEY (language_id) REFERENCES public.qboard_language(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: qboard_profile qboard_profile_user_id_337dbdc4_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.qboard_profile
+    ADD CONSTRAINT qboard_profile_user_id_337dbdc4_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: qboard_superman_intern_name qboard_superman_inte_internname_id_59e404ef_fk_qboard_in; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.qboard_superman_intern_name
+    ADD CONSTRAINT qboard_superman_inte_internname_id_59e404ef_fk_qboard_in FOREIGN KEY (internname_id) REFERENCES public.qboard_internname(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: qboard_superman_intern_name qboard_superman_inte_superman_id_58a80794_fk_qboard_su; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.qboard_superman_intern_name
+    ADD CONSTRAINT qboard_superman_inte_superman_id_58a80794_fk_qboard_su FOREIGN KEY (superman_id) REFERENCES public.qboard_superman(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: qboard_superman qboard_superman_skill_id_3e8f2c93_fk_qboard_skill_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.qboard_superman
+    ADD CONSTRAINT qboard_superman_skill_id_3e8f2c93_fk_qboard_skill_id FOREIGN KEY (skill_id) REFERENCES public.qboard_skill(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
