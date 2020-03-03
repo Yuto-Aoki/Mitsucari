@@ -155,7 +155,7 @@ DATABASES['default'].update(db_from_env)
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*', ".herokuapp.com"]
 
 # STATIC_ROOT = 'staticfiles'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
