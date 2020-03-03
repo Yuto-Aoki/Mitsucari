@@ -167,6 +167,22 @@ try:
 except ImportError:
     pass
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+             'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
+        },
+    },
+}
+
 if not DEBUG:
     SECRET_KEY = os.environ['SECRET_KEY']
     import django_heroku
