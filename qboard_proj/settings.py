@@ -20,7 +20,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '0m2_&-(19k4*(rqwn5yx-sn21t&j07q@#u8+=6#u0q6w4bori0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
@@ -144,6 +143,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 LOGIN_URL='/accounts/login'
 LOGIN_REDIRECT_URL='/'
