@@ -158,7 +158,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['*', ".herokuapp.com"]
 
 # STATIC_ROOT = 'staticfiles'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEBUG = False
 
@@ -186,4 +186,4 @@ LOGGING = {
 if not DEBUG:
     SECRET_KEY = os.environ['SECRET_KEY']
     import django_heroku
-    django_heroku.settings(locals())
+    django_heroku.settings(locals(), staticfiles=False)
