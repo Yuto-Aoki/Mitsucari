@@ -25,7 +25,8 @@ from django.contrib import admin
 from django.contrib.auth.decorators import login_required
 from qboard.models import Profile
 from qboard.views.register import register_view, done_view #追加！
-
+from django.conf import settings
+from django.conf.urls.static import static
 def index(request):
     profile = Profile.objects.all()
 
@@ -41,4 +42,4 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/register/', register_view, name='register'),
     path('accounts/register/done', done_view, name='register_done'),
-]
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
