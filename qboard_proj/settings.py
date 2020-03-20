@@ -137,17 +137,18 @@ USE_TZ = True
 #         os.path.join(BASE_DIR, "static"),
 #     ]
 # )
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # 集める場所
-STATIC_URL = '/app/staticfiles/'
+
+STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # 集める場所
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
-)
+# STATICFILES_FINDERS = (
+#     'django.contrib.staticfiles.finders.FileSystemFinder',
+#     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+# #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+# )
 LOGIN_URL='/accounts/login'
 LOGIN_REDIRECT_URL='/'
 LOGOUT_REDIRECT_URL='/'
@@ -155,11 +156,11 @@ LOGOUT_REDIRECT_URL='/'
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
 DATABASES['default'].update(db_from_env)
-# DATABASES['default'] = dj_database_url.config()
+
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-ALLOWED_HOSTS = ['*', ".herokuapp.com"]
+ALLOWED_HOSTS = ['*']
 
 # STATIC_ROOT = 'staticfiles'
 
