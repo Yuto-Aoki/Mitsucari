@@ -140,7 +140,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR,'..', 'mitsu-cari', 'staticfiles'),
+    os.path.join(BASE_DIR,'..', 'static', 'qboard'),
 )
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # 集める場所
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
