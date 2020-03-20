@@ -139,9 +139,9 @@ USE_TZ = True
 # )
 
 STATIC_URL = '/static/'
-# STATICFILES_DIRS = (
-#     os.path.join(BASE_DIR,'..', 'staticfiles'),
-# )
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR,'..', 'Mitsucari', 'static'),
+)
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # 集める場所
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # STATICFILES_FINDERS = (
