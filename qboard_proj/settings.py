@@ -189,6 +189,5 @@ LOGGING = {
 
 if not DEBUG:
     SECRET_KEY = os.environ['SECRET_KEY']
-    print(123456789999999999999)
     import django_heroku
     django_heroku.settings(locals(), staticfiles=False)
