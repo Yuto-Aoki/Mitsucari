@@ -1,4 +1,6 @@
 # Mitsucari
+url  = >  https://mitsu-cari.herokuapp.com/
+
 テックプレナー道場で最優秀賞を受賞したdjangoアプリケーションです
 
 gitlabで作業していましたが個人で拡張するためにgithubに移行しました。
